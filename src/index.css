@@ -1,0 +1,56 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+html, body {
+  height: 100%;
+  font: 87.5%/1.5 -apple-system, "BlinkMacSystemFont", "SF UI", "Helvetica Neue", sans-serif;
+}
+
+.site-title {
+  font-size: 1rem;
+}
+
+.site-root {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+}
+
+.site-header {
+  padding: 1.5rem;
+}
+
+.site-content {
+  flex: 1 0 auto;
+  display: table-row;
+  overflow-x: scroll;
+  align-items: baseline;
+  padding-left: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.image {
+  display: table-cell;
+  height: 100%;
+  width: auto;
+  padding-right: 1.5rem;
+}
+
+.image .m {
+  margin-bottom: 1.5rem;
+}
+
+.m img {
+  display: block;
+  width: auto;
+  /* 100vh - (header padding, header text, metadata text, metadata padding */
+  height: calc(100vh - (9rem));
+}
+
+.image p {
+  flex: 0 1 auto;
+}

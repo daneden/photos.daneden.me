@@ -1,0 +1,25 @@
+{
+  "name": "photos",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "node-exiftool": "^1.0.3",
+    "react-scripts": "0.2.1"
+  },
+  "dependencies": {
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-lazy": "^0.1.0",
+    "react-lazy-load": "^3.0.10"
+  },
+  "scripts": {
+    "prestart": "node exif.js",
+    "start": "react-scripts start",
+    "prebuild": "node exif.js",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/react-scripts/config/eslint.js"
+  }
+}
