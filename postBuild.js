@@ -1,8 +1,12 @@
-var ncp = require('ncp').ncp;
+let ncp = require('ncp').ncp;
 
 ncp.limit = 16;
 
-ncp('./images/', './build/images/', function (err) {
+let opts = {
+  dereference: true
+}
+
+ncp('./images/', './build/images/', opts, function (err) {
  if (err) {
    return console.error(err);
  }
