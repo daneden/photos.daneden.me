@@ -12,7 +12,7 @@ class GHImage extends Component {
               fm: "pjpg"
             }}
             fit={"max"}
-            src={"http://dephotos.imgix.net/" + this.props.name} />
+            src={"//dephotos.imgix.net/" + this.props.name} />
         </div>
         <p>
           &fnof;{this.props.fStop},
