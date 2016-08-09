@@ -14,6 +14,7 @@ class App extends Component {
       els.push(<GHImage
         src={'/images/' + img.fileName}
         speed={img.shutterSpeed}
+        iso={img.iso}
         focalLength={img.focalLength}
         fStop={img.fStop} />)
     }

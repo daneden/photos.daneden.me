@@ -7,7 +7,12 @@ class GHImage extends Component {
         <div className="m">
           <img alt="" src={this.props.src} />
         </div>
-        <p>&fnof;{this.props.fStop}, {this.props.speed}s, {this.props.focalLength}</p>
+        <p>
+          &fnof;{this.props.fStop},
+          {this.props.speed}s,
+          {this.props.focalLength},
+          ISO {this.props.iso}
+        </p>
       </div>
     )
   }
