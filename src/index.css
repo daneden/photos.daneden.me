@@ -43,6 +43,7 @@ html, body {
 }
 
 .image .m {
+  background-color: #eee;
   margin-bottom: 1.5rem;
 }
 
@@ -51,7 +52,14 @@ html, body {
   width: auto;
   /* 100vh - (header padding, header text, metadata text, metadata padding */
   height: calc(100vh - (9rem));
+
+  opacity: 0;
+  transition: .3s ease opacity;
 }
+
+  .m img.is-loaded {
+    opacity: 1;
+  }
 
 .image p {
   flex: 0 1 auto;

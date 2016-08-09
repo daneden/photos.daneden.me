@@ -10,9 +10,7 @@
     "ncp": "^2.0.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
-    "react-imgix": "^5.0.0",
-    "react-lazy": "^0.1.0",
-    "react-lazy-load": "^3.0.10"
+    "react-imgix": "^5.0.0"
   },
   "scripts": {
     "prestart": "node exif.js",
