@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+import Imgix from 'react-imgix';
 
 class GHImage extends Component {
   render() {
     return (
       <div className="image">
         <div className="m">
-          <img alt="" src={this.props.src} />
+          <Imgix
+            aggressiveLoad={true}
+            customParams={{
+              fm: "pjpg"
+            }}
+            fit={"max"}
+            src={"http://dephotos.imgix.net/" + this.props.name} />
         </div>
         <p>
           &fnof;{this.props.fStop},

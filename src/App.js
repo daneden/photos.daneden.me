@@ -12,7 +12,7 @@ class App extends Component {
     for(let i = 0; i < imageData.length; i++) {
       let img = imageData[i];
       els.push(<GHImage
-        src={'/images/' + img.fileName}
+        name={img.fileName}
         speed={img.shutterSpeed}
         iso={img.iso}
         focalLength={img.focalLength}
