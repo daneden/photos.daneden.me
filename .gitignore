@@ -9,3 +9,6 @@ build
 # misc
 .DS_Store
 npm-debug.log
+
+# images is symlinked from Dropbox
+images
