@@ -7,6 +7,7 @@
     "react-scripts": "0.2.1"
   },
   "dependencies": {
+    "ncp": "^2.0.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-lazy": "^0.1.0",
@@ -17,6 +18,7 @@
     "start": "react-scripts start",
     "prebuild": "node exif.js",
     "build": "react-scripts build",
+    "postbuild": "node postBuild.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
