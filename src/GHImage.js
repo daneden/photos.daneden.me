@@ -1,21 +1,34 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import Imgix from 'react-imgix';
 
 class GHImage extends Component {
   constructor(props) {
     super(props);
+
+    // Bind functions
     this.onImageLoad = this.onImageLoad.bind(this);
+    this.focusImageInViewport = this.focusImageInViewport.bind(this);
+
+    // Initialise state
     this.state = {
       imageLoaded: false
-    }
+    };
   }
 
+  // Function to reveal images when they're fully loaded
   onImageLoad() {
     this.setState({
       imageLoaded: true
     });
+  }
 
-    console.log(this.state.imageLoaded)
+  // Scroll the image into the viewport
+  focusImageInViewport() {
+    let node = ReactDOM.findDOMNode(this);
+    // TODO: dte
+    // Replace this magic number with a responsibly-derived baseline number
+    node.parentNode.scrollLeft = node.offsetLeft - 21;
   }
 
   render() {
