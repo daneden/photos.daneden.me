@@ -32,34 +32,38 @@ class GHImage extends Component {
   }
 
   render() {
-    let url = '';
+    let url = '',
+        imageName = this.props.name.split('.')[0];
 
+    // Use local images for development
     if(process.env.NODE_ENV && process.env.NODE_ENV === 'DEVELOPMENT') {
       url = `/images/${this.props.name}`
     } else {
-      url = `//dephotos.imgix.net/${this.props.name}`
+      url = `https://dephotos.imgix.net/${this.props.name}`
     }
 
     return (
-      <div className="image">
+      <div id={imageName} className="image">
         <div className="m">
-          <Imgix
-            aggressiveLoad={true}
-            customParams={{
-              fm: "pjpg"
-            }}
-            fit={"max"}
-            src={url}
-            imgProps={{
-              onLoad: this.onImageLoad
-            }}
-            className={this.state.imageLoaded === true ? 'is-loaded' : 'is-not-loaded'} />
+          <a onClick={this.focusImageInViewport} href={'#' + imageName}>
+            <Imgix
+              aggressiveLoad={true}
+              customParams={{
+                fm: "pjpg"
+              }}
+              fit={"max"}
+              src={url}
+              imgProps={{
+                onLoad: this.onImageLoad
+              }}
+              className={this.state.imageLoaded === true ? 'is-loaded' : 'is-not-loaded'} />
+          </a>
         </div>
         <p>
-          &fnof;{this.props.fStop},
-          {this.props.speed}s,
-          {this.props.focalLength},
-          ISO {this.props.iso}
+        {`\u0192${this.props.fStop},
+          ${this.props.speed}s,
+          ${this.props.focalLength},
+          ISO ${this.props.iso}`}
         </p>
       </div>
     )
