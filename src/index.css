@@ -1,3 +1,7 @@
+:root {
+  --accent: #EF540D;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -5,15 +9,33 @@
   position: relative;
 }
 
-html, body {
+html {
   height: 100%;
   font: 87.5%/1.5 -apple-system, "BlinkMacSystemFont", "SF UI", "Helvetica Neue", sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 
+a {
+  color: inherit;
+}
+
+  a:hover, a:focus {
+    color: var(--accent);
+  }
+
 .site-title {
+  font-weight: 400;
   font-size: 1rem;
 }
+
+  .site-title a {
+    text-decoration: none;
+    border-bottom: 2px solid #ccc;
+  }
+
+    .site-title a:hover, .site-title a:focus {
+      border-bottom-color: inherit;
+    }
 
 .site-root {
   display: flex;

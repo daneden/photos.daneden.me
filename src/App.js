@@ -15,14 +15,15 @@ class App extends Component {
 
   handleKeyDown(e) {
     e = e || window.event;
-    e.preventDefault();
     switch (e.keyCode) {
       case 37:
+        e.preventDefault();
         this.setState({
           activeImage: this.state.activeImage >= 0 ? this.state.activeImage - 1 : 0
         });
         break;
       case 39:
+        e.preventDefault();
         this.setState({
           activeImage: this.state.activeImage < this.props.images.length ? this.state.activeImage + 1: this.props.images.length - 1
         });
