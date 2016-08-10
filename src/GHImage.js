@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Imgix from 'react-imgix';
+import { scrollElementToPosition } from './Utils';
 
 class GHImage extends Component {
   constructor(props) {
@@ -25,10 +26,10 @@ class GHImage extends Component {
 
   // Scroll the image into the viewport
   focusImageInViewport() {
-    let node = ReactDOM.findDOMNode(this);
-    // TODO: dte
-    // Replace this magic number with a responsibly-derived baseline number
-    node.parentNode.scrollLeft = node.offsetLeft - 21;
+    let node = ReactDOM.findDOMNode(this),
+        targetPos = node.offsetLeft - ((node.parentNode.clientWidth / 2) - (node.offsetWidth / 2));
+    console.log(targetPos);
+    scrollElementToPosition(node.parentNode, targetPos, 500);
   }
 
   render() {
