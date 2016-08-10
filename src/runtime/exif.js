@@ -42,7 +42,7 @@ let logData = (exifData) => {
   let writeString = `let imageData = ${JSON.stringify(fileInfo)};
     export default imageData;`
 
-  fs.writeFile('../manifest.js', writeString, (err) => {
+  fs.writeFile('./src/manifest.js', writeString, (err) => {
     if(err) return console.log(err);
   });
 }
