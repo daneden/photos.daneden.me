@@ -17,18 +17,18 @@ class GHImage extends Component {
     };
   }
 
-  // Function to reveal images when they're fully loaded
-  onImageLoad() {
-    this.setState({
-      imageLoaded: true
-    });
-  }
-
   componentDidUpdate() {
     if(this.props.scrollIntoView === true) {
       this.focusImageInViewport();
       window.location.hash = this.props.name.split('.')[0];
     }
+  }
+
+  // Reveal images when they're fully loaded
+  onImageLoad() {
+    this.setState({
+      imageLoaded: true
+    });
   }
 
   // Scroll the image into the viewport
@@ -59,14 +59,10 @@ class GHImage extends Component {
           <a onClick={this.handleClick.bind(this)} href={'#' + imageName}>
             <Imgix
               aggressiveLoad={true}
-              customParams={{
-                fm: "pjpg"
-              }}
+              customParams={{ fm: "pjpg" }}
               fit={"max"}
               src={url}
-              imgProps={{
-                onLoad: this.onImageLoad
-              }}
+              imgProps={{ onLoad: this.onImageLoad }}
               className={this.state.imageLoaded === true ? 'is-loaded' : 'is-not-loaded'} />
           </a>
         </div>

@@ -24,21 +24,24 @@ class App extends Component {
 
   handleKeyDown(e) {
     e = e || window.event;
-    switch (e.keyCode) {
-      case 37:
-        e.preventDefault();
-        this.setState({
-          activeImage: this.state.activeImage > 0 ? this.state.activeImage - 1 : 0
-        });
-        break;
-      case 39:
-        e.preventDefault();
-        this.setState({
-          activeImage: this.state.activeImage < this.props.images.length ? this.state.activeImage + 1: this.props.images.length - 1
-        });
-        break;
-      default:
-        return;
+    let maxIndex = this.props.images.length;
+
+    if(e.keyCode === 37) {
+      // Left arrow key
+      e.preventDefault();
+      this.setState((prev) => {
+        return {
+          activeImage: prev.activeImage > 0 ? prev.activeImage - 1 : 0
+        }
+      });
+    } else if (e.keyCode === 39) {
+      // Right arrow key
+      e.preventDefault();
+      this.setState((prev) => {
+        return {
+          activeImage: prev.activeImage < maxIndex ? prev.activeImage + 1 : maxIndex - 1
+        }
+      });
     }
   }
 
@@ -47,18 +50,19 @@ class App extends Component {
     this.setState({activeImage: i});
   }
 
-  populatePreface() {
-    return {
-      __html: this.props.preface
-    }
-  }
-
   renderPreface() {
     if(this.props.preface !== undefined) {
       return (
-        <div dangerouslySetInnerHTML={this.populatePreface()} className="pane pane--text">
-        </div>
+        <div dangerouslySetInnerHTML={this.populatePreface()} className="pane pane--text" />
       )
+    }
+  }
+
+  // Since dangerouslySetInnerHTML requires an object, this method is
+  // used to populate the div
+  populatePreface() {
+    return {
+      __html: this.props.preface
     }
   }
 
