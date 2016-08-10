@@ -13,11 +13,11 @@
     "react-imgix": "^5.0.0"
   },
   "scripts": {
-    "prestart": "node exif.js",
+    "prestart": "node ./src/runtime/exif.js",
     "start": "react-scripts start",
-    "prebuild": "node exif.js",
+    "prebuild": "node ./src/runtime/exif.js",
     "build": "react-scripts build",
-    "postbuild": "node postBuild.js",
+    "postbuild": "node ./src/runtime/postBuild.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

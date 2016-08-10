@@ -7,7 +7,6 @@ ep.open().then((pid) => {
   return ep.readMetadata('./images/').then((res) => {
     logData(res);
   });
-  // repeat as many times as required
 }).then(() => {
   return ep.close().then(() => {
     console.log('Closed exiftool');
@@ -17,6 +16,7 @@ ep.open().then((pid) => {
 let logData = (exifData) => {
   let fileInfo = [];
 
+  // Transform the data to remove all but the info we care about
   exifData.data.forEach((datum) => {
     let info = {
       fileName: datum.FileName,
@@ -29,6 +29,7 @@ let logData = (exifData) => {
     fileInfo.push(info);
   });
 
+  // Sort the image data by filename
   fileInfo.sort((a, b) => {
     let keyA = parseInt(a.fileName.split('.')[0]),
         keyB = parseInt(b.fileName.split('.')[0]);
@@ -37,10 +38,11 @@ let logData = (exifData) => {
     return 0;
   });
 
+  // Write data to file for the app to consume
   let writeString = `let imageData = ${JSON.stringify(fileInfo)};
     export default imageData;`
 
-  fs.writeFile('./src/manifest.js', writeString, (err) => {
+  fs.writeFile('../manifest.js', writeString, (err) => {
     if(err) return console.log(err);
   });
 }
