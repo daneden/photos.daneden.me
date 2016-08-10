@@ -54,8 +54,8 @@ class GHImage extends Component {
     }
 
     return (
-      <div id={imageName} className="image">
-        <div className="m">
+      <div id={imageName} className="pane pane--image">
+        <div className="pane__image">
           <a onClick={this.handleClick.bind(this)} href={'#' + imageName}>
             <Imgix
               aggressiveLoad={true}
@@ -70,7 +70,7 @@ class GHImage extends Component {
               className={this.state.imageLoaded === true ? 'is-loaded' : 'is-not-loaded'} />
           </a>
         </div>
-        <p>
+        <p className="u-mb0">
         {`\u0192${this.props.fStop},
           ${this.props.speed}s,
           ${this.props.focalLength},

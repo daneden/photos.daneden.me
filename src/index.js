@@ -4,10 +4,11 @@ import App from './App';
 
 import './index.css';
 import imageData from './manifest.js';
+import SiteInfo from './meta';
 
 imageData.reverse();
 
-let startingIndex = 0;
+let startingIndex = -1;
 
 if(window.location.hash && window.location.hash !== '#') {
   let s = window.location.hash.split('#')[1];
@@ -17,6 +18,6 @@ if(window.location.hash && window.location.hash !== '#') {
 }
 
 ReactDOM.render(
-  <App startingImage={startingIndex} images={imageData} />,
+  <App preface={SiteInfo.fullDescription} startingImage={startingIndex} images={imageData} />,
   document.getElementById('root')
 );
