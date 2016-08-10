@@ -66,13 +66,12 @@ p {
   height: 100%;
   width: auto;
   padding-right: 1.5rem;
-  vertical-align: bottom;
+  vertical-align: top;
 }
 
   .pane--text {
     min-width: 75vw;
     max-width: 30em;
-    vertical-align: top;
   }
 
 .pane__image {
