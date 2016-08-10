@@ -1,4 +1,4 @@
-const scrollElementToPosition = (el, target, scrollDuration) => {
+const hScrollElementToPosition = (el, target, scrollDuration) => {
   let cosParameter = (target - el.scrollLeft) / 2,
       scrollCount = 0,
       oldTimestamp = performance.now();
@@ -26,6 +26,13 @@ const scrollElementToPosition = (el, target, scrollDuration) => {
   window.requestAnimationFrame(step);
 }
 
+const hScrollCenterElementInParent = (el, scrollDuration) => {
+  scrollDuration = scrollDuration || 500;
+  let targetPos = el.offsetLeft - ((el.parentNode.clientWidth / 2) - (el.offsetWidth / 2));
+  hScrollElementToPosition(el.parentNode, targetPos, scrollDuration);
+}
+
 export {
-  scrollElementToPosition
+  hScrollElementToPosition,
+  hScrollCenterElementInParent
 }

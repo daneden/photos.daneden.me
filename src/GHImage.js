@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Imgix from 'react-imgix';
-import { scrollElementToPosition } from './Utils';
+import { hScrollCenterElementInParent } from './Utils';
 
 class GHImage extends Component {
   constructor(props) {
@@ -24,12 +24,22 @@ class GHImage extends Component {
     });
   }
 
+  componentDidUpdate() {
+    if(this.props.scrollIntoView === true) {
+      this.focusImageInViewport();
+      window.location.hash = this.props.name.split('.')[0];
+    }
+  }
+
   // Scroll the image into the viewport
   focusImageInViewport() {
-    let node = ReactDOM.findDOMNode(this),
-        targetPos = node.offsetLeft - ((node.parentNode.clientWidth / 2) - (node.offsetWidth / 2));
-    console.log(targetPos);
-    scrollElementToPosition(node.parentNode, targetPos, 500);
+    let node = ReactDOM.findDOMNode(this);
+    hScrollCenterElementInParent(node, 500);
+  }
+
+  handleClick() {
+    this.focusImageInViewport();
+    this.props.onClick();
   }
 
   render() {
@@ -37,7 +47,7 @@ class GHImage extends Component {
         imageName = this.props.name.split('.')[0];
 
     // Use local images for development
-    if(process.env.NODE_ENV && process.env.NODE_ENV === 'DEVELOPMENT') {
+    if(process.env.NODE_ENV && process.env.NODE_ENV.toUpperCase() === 'DEVELOPMENT') {
       url = `/images/${this.props.name}`
     } else {
       url = `https://dephotos.imgix.net/${this.props.name}`
@@ -46,7 +56,7 @@ class GHImage extends Component {
     return (
       <div id={imageName} className="image">
         <div className="m">
-          <a onClick={this.focusImageInViewport} href={'#' + imageName}>
+          <a onClick={this.handleClick.bind(this)} href={'#' + imageName}>
             <Imgix
               aggressiveLoad={true}
               customParams={{
