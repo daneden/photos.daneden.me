@@ -1,3 +1,4 @@
+"use strict";
 const fs = require('fs');
 const exiftool = require('node-exiftool');
 const ep = new exiftool.ExiftoolProcess();
