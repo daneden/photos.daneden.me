@@ -7,6 +7,8 @@ ep.open().then((pid) => {
   console.log('Started exiftool process %s', pid);
   return ep.readMetadata('./images/').then((res) => {
     logData(res);
+  }).catch(error => {
+    console.log('Error: ', error);
   });
 }).then(() => {
   return ep.close().then(() => {
