@@ -4,10 +4,9 @@
   "private": true,
   "devDependencies": {
     "node-exiftool": "^1.0.3",
-    "react-scripts": "0.2.1"
+    "react-scripts": "0.7.0"
   },
   "dependencies": {
-    "ncp": "^2.0.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-imgix": "^5.0.0"
@@ -17,7 +16,6 @@
     "start": "react-scripts start",
     "prebuild": "node ./src/runtime/exif.js",
     "build": "react-scripts build",
-    "postbuild": "node ./src/runtime/postBuild.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

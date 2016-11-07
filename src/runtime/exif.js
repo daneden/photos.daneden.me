@@ -5,7 +5,7 @@ const ep = new exiftool.ExiftoolProcess();
 
 ep.open().then((pid) => {
   console.log('Started exiftool process %s', pid);
-  return ep.readMetadata('./images/').then((res) => {
+  return ep.readMetadata('./public/images/').then((res) => {
     logData(res);
   }).catch(error => {
     console.log('Error: ', error);

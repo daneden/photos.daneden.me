@@ -48,7 +48,7 @@ class GHImage extends Component {
 
     // Use local images for development
     if(process.env.NODE_ENV && process.env.NODE_ENV.toUpperCase() === 'DEVELOPMENT') {
-      url = `/images/${this.props.name}`
+      url = `${process.env.PUBLIC_URL}/images/${this.props.name}`
     } else {
       url = `https://dephotos.imgix.net/${this.props.name}`
     }
