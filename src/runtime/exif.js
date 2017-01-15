@@ -1,7 +1,8 @@
 "use strict";
 const fs = require('fs');
 const exiftool = require('node-exiftool');
-const ep = new exiftool.ExiftoolProcess();
+const exiftoolBin = require('dist-exiftool');
+const ep = new exiftool.ExiftoolProcess(exiftoolBin);
 
 ep.open().then((pid) => {
   console.log('Started exiftool process %s', pid);

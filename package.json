@@ -7,6 +7,7 @@
     "react-scripts": "0.7.0"
   },
   "dependencies": {
+    "dist-exiftool": "^10.33.1",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-imgix": "^5.0.0"
