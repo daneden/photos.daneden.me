@@ -15,6 +15,8 @@ ep.open().then((pid) => {
   return ep.close().then(() => {
     console.log('Closed exiftool');
   });
+}).catch(error =>{
+  console.log(error);
 });
 
 let logData = (exifData) => {
