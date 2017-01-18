@@ -62,7 +62,10 @@ class App extends Component {
   renderPreface() {
     if(this.props.preface !== undefined) {
       return (
-        <div dangerouslySetInnerHTML={this.populatePreface()} className="pane pane--text" />
+        <div
+          dangerouslySetInnerHTML={this.populatePreface()}
+          className="pane pane--text"
+        />
       )
     }
   }
@@ -83,13 +86,14 @@ class App extends Component {
           { this.renderPreface() }
           {this.props.images.map((img, i) =>
             <GHImage key={i}
-            onClick={this.handleClick.bind(this, i)}
-            scrollIntoView={this.state.activeImage === i ? true : false}
-            name={img.fileName}
-            speed={img.shutterSpeed}
-            iso={img.iso}
-            focalLength={img.focalLength}
-            fStop={img.fStop} />
+              onClick={this.handleClick.bind(this, i)}
+              scrollIntoView={this.state.activeImage === i ? true : false}
+              name={img.fileName}
+              speed={img.shutterSpeed}
+              iso={img.iso}
+              focalLength={img.focalLength}
+              fStop={img.fStop}
+            />
           )}
         </main>
       </div>
