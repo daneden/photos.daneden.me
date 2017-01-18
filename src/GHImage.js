@@ -3,7 +3,16 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Imgix from 'react-imgix';
 import { hScrollCenterElementInParent } from './Utils';
-import { GHImageProps } from './types';
+
+type GHImageProps = {
+  onClick: () => void,
+  scrollIntoView: boolean,
+  name: string,
+  speed: string,
+  iso: number,
+  focalLength: string,
+  fStop: number,
+}
 
 class GHImage extends Component {
   props: GHImageProps;

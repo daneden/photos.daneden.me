@@ -2,8 +2,20 @@
 import GHImage from './GHImage';
 import Header from './Header';
 import React, { Component } from 'react';
-import { AppProps } from './types'
 
+type ImageData = {
+  fileName: string,
+  fStop: number,
+  shutterSpeed: string,
+  iso: number,
+  focalLength: string,
+}
+
+type AppProps = {
+  preface?: String,
+  startingImage: number,
+  images: Array<ImageData>
+}
 
 class App extends Component {
   props: AppProps;
