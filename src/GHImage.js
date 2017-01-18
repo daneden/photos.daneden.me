@@ -28,6 +28,8 @@ class GHImage extends Component {
     this.state = {
       imageLoaded: false
     };
+
+    (this:any).onImageLoad = this.onImageLoad.bind(this)
   }
 
   componentDidUpdate() {
