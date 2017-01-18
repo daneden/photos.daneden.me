@@ -1,20 +1,35 @@
+// @flow
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Imgix from 'react-imgix';
 import { hScrollCenterElementInParent } from './Utils';
 
-class GHImage extends Component {
-  constructor(props) {
-    super(props);
+type GHImageProps = {
+  onClick: () => void,
+  scrollIntoView: boolean,
+  name: string,
+  speed: string,
+  iso: number,
+  focalLength: string,
+  fStop: number,
+}
 
-    // Bind functions
-    this.onImageLoad = this.onImageLoad.bind(this);
-    this.focusImageInViewport = this.focusImageInViewport.bind(this);
+class GHImage extends Component {
+  props: GHImageProps;
+
+  state: {
+    imageLoaded: boolean
+  };
+
+  constructor(props: GHImageProps) {
+    super(props);
 
     // Initialise state
     this.state = {
       imageLoaded: false
     };
+
+    (this:any).onImageLoad = this.onImageLoad.bind(this)
   }
 
   componentDidUpdate() {

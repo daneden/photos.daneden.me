@@ -1,18 +1,39 @@
-import React, { Component } from 'react';
-import Header from './Header';
+// @flow
 import GHImage from './GHImage';
+import Header from './Header';
+import React, { Component } from 'react';
+
+type ImageData = {
+  fileName: string,
+  fStop: number,
+  shutterSpeed: string,
+  iso: number,
+  focalLength: string,
+}
+
+type AppProps = {
+  preface?: String,
+  startingImage: number,
+  images: Array<ImageData>
+}
 
 class App extends Component {
-  constructor(props) {
+  props: AppProps;
+
+  state: {
+    activeImage: number
+  };
+
+  constructor(props: AppProps) {
     super(props);
     this.state = {
       activeImage: this.props.startingImage
     };
-
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.renderPreface = this.renderPreface.bind(this);
-    this.populatePreface = this.populatePreface.bind(this);
   }
+
+  static defaultProps = {
+    startingImage: -1
+  };
 
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
@@ -22,7 +43,7 @@ class App extends Component {
     window.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  handleKeyDown(e) {
+  handleKeyDown(e: SyntheticKeyboardEvent) {
     e = e || window.event;
     let maxIndex = this.props.images.length;
 
@@ -45,7 +66,7 @@ class App extends Component {
     }
   }
 
-  handleClick(i) {
+  handleClick(i: number) {
     // Set the current active image
     this.setState({activeImage: i});
   }
@@ -53,7 +74,10 @@ class App extends Component {
   renderPreface() {
     if(this.props.preface !== undefined) {
       return (
-        <div dangerouslySetInnerHTML={this.populatePreface()} className="pane pane--text" />
+        <div
+          dangerouslySetInnerHTML={this.populatePreface()}
+          className="pane pane--text"
+        />
       )
     }
   }
@@ -74,22 +98,19 @@ class App extends Component {
           { this.renderPreface() }
           {this.props.images.map((img, i) =>
             <GHImage key={i}
-            onClick={this.handleClick.bind(this, i)}
-            scrollIntoView={this.state.activeImage === i ? true : false}
-            name={img.fileName}
-            speed={img.shutterSpeed}
-            iso={img.iso}
-            focalLength={img.focalLength}
-            fStop={img.fStop} />
+              onClick={this.handleClick.bind(this, i)}
+              scrollIntoView={this.state.activeImage === i ? true : false}
+              name={img.fileName}
+              speed={img.shutterSpeed}
+              iso={img.iso}
+              focalLength={img.focalLength}
+              fStop={img.fStop}
+            />
           )}
         </main>
       </div>
     );
   }
-}
-
-App.defaultProps = {
-  startingImage: -1
 }
 
 export default App;

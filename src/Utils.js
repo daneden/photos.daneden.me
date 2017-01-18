@@ -1,4 +1,13 @@
-const hScrollElementToPosition = (el, target, scrollDuration) => {
+// @flow
+const hScrollElementToPosition = (
+  // TODO: dte
+  // unlike hScrollCenterElement, el here is an Element and
+  // not an HTMLElement. Flow raises a type error that needs
+  // investigating.
+  el: Element,
+  target: number,
+  scrollDuration: number
+) => {
   let cosParameter = (target - el.scrollLeft) / 2,
       scrollCount = 0,
       oldTimestamp = performance.now();
@@ -26,10 +35,13 @@ const hScrollElementToPosition = (el, target, scrollDuration) => {
   window.requestAnimationFrame(step);
 }
 
-const hScrollCenterElementInParent = (el, scrollDuration) => {
-  scrollDuration = scrollDuration || 500;
-  let targetPos = el.offsetLeft - ((el.parentNode.clientWidth / 2) - (el.offsetWidth / 2));
-  hScrollElementToPosition(el.parentNode, targetPos, scrollDuration);
+const hScrollCenterElementInParent = (
+  el: HTMLElement,
+  scrollDuration: number = 500
+) => {
+  let parent: Element = el.parentElement || document.body,
+      targetPos = el.offsetLeft - ((parent.clientWidth / 2) - (el.offsetWidth / 2));
+  hScrollElementToPosition(parent, targetPos, scrollDuration);
 }
 
 export {
