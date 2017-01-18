@@ -1,15 +1,19 @@
+// @flow
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Imgix from 'react-imgix';
 import { hScrollCenterElementInParent } from './Utils';
+import { GHImageProps } from './types';
 
 class GHImage extends Component {
-  constructor(props) {
-    super(props);
+  props: GHImageProps;
 
-    // Bind functions
-    this.onImageLoad = this.onImageLoad.bind(this);
-    this.focusImageInViewport = this.focusImageInViewport.bind(this);
+  state: {
+    imageLoaded: boolean
+  };
+
+  constructor(props: GHImageProps) {
+    super(props);
 
     // Initialise state
     this.state = {

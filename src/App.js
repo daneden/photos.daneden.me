@@ -1,18 +1,27 @@
-import React, { Component } from 'react';
-import Header from './Header';
+// @flow
 import GHImage from './GHImage';
+import Header from './Header';
+import React, { Component } from 'react';
+import { AppProps } from './types'
+
 
 class App extends Component {
-  constructor(props) {
+  props: AppProps;
+
+  state: {
+    activeImage: number
+  };
+
+  constructor(props: AppProps) {
     super(props);
     this.state = {
       activeImage: this.props.startingImage
     };
-
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.renderPreface = this.renderPreface.bind(this);
-    this.populatePreface = this.populatePreface.bind(this);
   }
+
+  static defaultProps = {
+    startingImage: -1
+  };
 
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
@@ -22,7 +31,7 @@ class App extends Component {
     window.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  handleKeyDown(e) {
+  handleKeyDown(e: SyntheticKeyboardEvent) {
     e = e || window.event;
     let maxIndex = this.props.images.length;
 
@@ -45,7 +54,7 @@ class App extends Component {
     }
   }
 
-  handleClick(i) {
+  handleClick(i: number) {
     // Set the current active image
     this.setState({activeImage: i});
   }
@@ -86,10 +95,6 @@ class App extends Component {
       </div>
     );
   }
-}
-
-App.defaultProps = {
-  startingImage: -1
 }
 
 export default App;
