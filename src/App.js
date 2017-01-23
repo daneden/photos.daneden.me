@@ -37,16 +37,16 @@ class App extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('keydown', this.handleKeyDown.bind(this));
   }
 
   handleKeyDown(e: SyntheticKeyboardEvent) {
     e = e || window.event;
-    if(e.keyCode !== 37 || e.keyCode !== 39) return;
+    // if(e.keyCode !== 37 || e.keyCode !== 39) return;
 
     let maxIndex = this.props.images.length;
 

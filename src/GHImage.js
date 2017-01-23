@@ -97,7 +97,7 @@ class GHImage extends Component {
     )
 
     return (
-      <div className="pane page--image">
+      <div id={imageName} className="pane page--image">
         <Waypoint
           key={imageName}
           horizontal={true}
