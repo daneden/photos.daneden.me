@@ -61,7 +61,7 @@ class GHImage extends Component {
     this.props.onClick();
   }
 
-  setOnScreen(flag) {
+  setOnScreen(flag: boolean) {
     this.setState({
       onScreen: flag,
     })

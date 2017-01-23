@@ -4,11 +4,12 @@ import Header from './Header';
 import React, { Component } from 'react';
 
 type ImageData = {
-  fileName: string,
+  aspectRatio: number,
   fStop: number,
-  shutterSpeed: string,
-  iso: number,
+  fileName: string,
   focalLength: string,
+  iso: number,
+  shutterSpeed: string,
 }
 
 type AppProps = {
