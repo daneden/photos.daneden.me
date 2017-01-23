@@ -3,22 +3,25 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Imgix from 'react-imgix';
 import { hScrollCenterElementInParent } from './Utils';
+import Waypoint from 'react-waypoint';
 
 type GHImageProps = {
+  aspectRatio: number,
+  fStop: number,
+  focalLength: string,
+  iso: number,
+  name: string,
   onClick: () => void,
   scrollIntoView: boolean,
-  name: string,
   speed: string,
-  iso: number,
-  focalLength: string,
-  fStop: number,
 }
 
 class GHImage extends Component {
   props: GHImageProps;
 
   state: {
-    imageLoaded: boolean
+    imageLoaded: boolean,
+    onScreen: boolean,
   };
 
   constructor(props: GHImageProps) {
@@ -26,7 +29,8 @@ class GHImage extends Component {
 
     // Initialise state
     this.state = {
-      imageLoaded: false
+      imageLoaded: false,
+      onScreen: false,
     };
 
     (this:any).onImageLoad = this.onImageLoad.bind(this)
@@ -57,28 +61,59 @@ class GHImage extends Component {
     this.props.onClick();
   }
 
+  setOnScreen(flag) {
+    this.setState({
+      onScreen: flag,
+    })
+  }
+
   render() {
-    let url = '',
+    let url = `https://dephotos.imgix.net/${this.props.name}`,
         imageName = this.props.name.split('.')[0];
 
     // Use local images for development
     if(process.env.NODE_ENV && process.env.NODE_ENV.toUpperCase() === 'DEVELOPMENT') {
       url = `${process.env.PUBLIC_URL}/images/${this.props.name}`
-    } else {
-      url = `https://dephotos.imgix.net/${this.props.name}`
     }
 
+    const image = (
+      <Imgix
+        customParams={{
+          fm: "pjpg",
+        }}
+        fit={"max"}
+        src={url}
+        imgProps={{ onLoad: this.onImageLoad }}
+        className={this.state.imageLoaded === true ? 'is-loaded' : 'is-not-loaded'}
+      />
+    )
+
+    const placeholder = (
+      <img
+        src=""
+        role="presentation"
+        className="is-not-loaded"
+      />
+    )
+
     return (
-      <div id={imageName} className="pane pane--image">
-        <div className="pane__image">
+      <div className="pane page--image">
+        <Waypoint
+          key={imageName}
+          horizontal={true}
+          topOffset="-100%"
+          bottomOffset="0"
+          onEnter={this.setOnScreen.bind(this, true)}
+          onLeave={this.setOnScreen.bind(this, false)}
+        />
+        <div
+          className="pane__image"
+          style={{
+            minWidth: `calc((100vh - (9rem)) * ${this.props.aspectRatio})`,
+          }}
+        >
           <a onClick={this.handleClick.bind(this)} href={'#' + imageName}>
-            <Imgix
-              aggressiveLoad={true}
-              customParams={{ fm: "pjpg" }}
-              fit={"max"}
-              src={url}
-              imgProps={{ onLoad: this.onImageLoad }}
-              className={this.state.imageLoaded === true ? 'is-loaded' : 'is-not-loaded'} />
+            {this.state.onScreen ? image : placeholder}
           </a>
         </div>
         <p className="u-mb0">

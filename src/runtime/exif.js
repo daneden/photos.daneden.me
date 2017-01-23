@@ -24,12 +24,21 @@ let logData = (exifData) => {
 
   // Transform the data to remove all but the info we care about
   exifData.data.forEach((datum) => {
-    let info = {
-      fileName: datum.FileName,
+    // The aspect ratio here is actually in terms of
+    // height:width (instead of typical width:height)
+    // since they all have a fixed height relative to the
+    // viewport
+    const aspectRatio = datum.ImageSize
+      .split('x')
+      .map(n => parseInt(n))
+      .reduce((a, b) => a/b)
+    const info = {
+      aspectRatio,
       fStop: datum.FNumber,
-      shutterSpeed: datum.ShutterSpeed,
+      fileName: datum.FileName,
+      focalLength: datum.FocalLength.replace(' ', ''),
       iso: datum.ISO,
-      focalLength: datum.FocalLength.replace(' ', '')
+      shutterSpeed: datum.ShutterSpeed,
     }
 
     fileInfo.push(info);
@@ -45,7 +54,7 @@ let logData = (exifData) => {
   });
 
   // Write data to file for the app to consume
-  let writeString = `let imageData = ${JSON.stringify(fileInfo)};
+  let writeString = `let imageData = ${JSON.stringify(fileInfo, null, ' ')};
     export default imageData;`
 
   fs.writeFile('./src/manifest.js', writeString, (err) => {

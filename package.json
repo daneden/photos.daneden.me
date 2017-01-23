@@ -11,7 +11,8 @@
     "flow-bin": "^0.37.4",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
-    "react-imgix": "^5.0.0"
+    "react-imgix": "^5.0.0",
+    "react-waypoint": "^5.0.3"
   },
   "scripts": {
     "prestart": "node ./src/runtime/exif.js",

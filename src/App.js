@@ -45,6 +45,8 @@ class App extends Component {
 
   handleKeyDown(e: SyntheticKeyboardEvent) {
     e = e || window.event;
+    if(e.keyCode !== 37 || e.keyCode !== 39) return;
+
     let maxIndex = this.props.images.length;
 
     if(e.keyCode === 37) {
@@ -98,13 +100,14 @@ class App extends Component {
           { this.renderPreface() }
           {this.props.images.map((img, i) =>
             <GHImage key={i}
+              aspectRatio={img.aspectRatio}
+              fStop={img.fStop}
+              focalLength={img.focalLength}
+              iso={img.iso}
+              name={img.fileName}
               onClick={this.handleClick.bind(this, i)}
               scrollIntoView={this.state.activeImage === i ? true : false}
-              name={img.fileName}
               speed={img.shutterSpeed}
-              iso={img.iso}
-              focalLength={img.focalLength}
-              fStop={img.fStop}
             />
           )}
         </main>
