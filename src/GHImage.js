@@ -76,6 +76,11 @@ class GHImage extends Component {
       url = `${process.env.PUBLIC_URL}/images/${this.props.name}`
     }
 
+    const imgClass = [
+      this.state.imageLoaded === true ? 'is-loaded' : 'is-not-loaded',
+      'image__img',
+    ]
+
     const image = (
       <Imgix
         customParams={{
@@ -84,17 +89,20 @@ class GHImage extends Component {
         fit={"max"}
         src={url}
         imgProps={{ onLoad: this.onImageLoad }}
-        className={this.state.imageLoaded === true ? 'is-loaded' : 'is-not-loaded'}
+        className={imgClass.join(' ')}
       />
     )
 
     const placeholder = (
-      <img
-        src=""
+      <div
         role="presentation"
-        className="is-not-loaded"
+        className="image__img"
       />
     )
+
+    const speed = String(this.props.speed).indexOf('/') === -1
+                ? (<span>{this.props.speed}</span>)
+                : (<span className="frac">{this.props.speed}</span>)
 
     return (
       <div id={imageName} className="pane page--image">
@@ -117,10 +125,10 @@ class GHImage extends Component {
           </a>
         </div>
         <p className="u-mb0">
-        {`\u0192${this.props.fStop},
-          ${this.props.speed}s,
-          ${this.props.focalLength},
-          ISO ${this.props.iso}`}
+        {`\u0192${this.props.fStop}, `}
+        {speed} s,{" "}
+        {this.props.focalLength},{" "}
+        ISO {this.props.iso}
         </p>
       </div>
     )

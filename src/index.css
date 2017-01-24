@@ -27,6 +27,14 @@ p {
   margin-bottom: 1.5rem;
 }
 
+.frac {
+  font-feature-settings: "frac" 1;
+}
+
+.caps {
+  font-feature-settings: "smcp" 1, "c2sc" 1;
+}
+
 .site-title {
   font-weight: 400;
   font-size: 1rem;
@@ -79,7 +87,7 @@ p {
   margin-bottom: 1.5rem;
 }
 
-.pane__image img {
+.image__img {
   display: block;
   width: 100%;
   object-fit: cover;
@@ -90,12 +98,12 @@ p {
 }
 
   @media (orientation: portrait) {
-    .pane__image img {
+    .image__img {
       height: calc(95vh - (9rem));
     }
   }
 
-  .pane__image img.is-not-loaded {
+  .image__img.is-not-loaded {
     opacity: 0;
   }
 
