@@ -8,8 +8,6 @@ const SiteInfo = {
     <p>Amongst thousands of photos, it&rsquo;s easy to lose track of my favorites.
     This little website serves as a home for the photos I&rsquo;m most proud of.</p>
 
-    <p>Horizontally scroll, swipe, or use the arrow keys to browse.</p>
-
     <p>All photographs shot on a Sony &alpha;6000. You can follow me on
     <a href="https://twitter.com/_dte">Twitter</a> and
     <a href="https://instagram.com/_dte">Instagram</a>.</p>`,
