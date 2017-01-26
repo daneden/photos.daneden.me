@@ -13,6 +13,7 @@ html {
   height: 100%;
   font: 87.5%/1.5 -apple-system, "BlinkMacSystemFont", "SF UI", "Helvetica Neue", sans-serif;
   -webkit-text-size-adjust: 100%;
+  overflow: hidden;
 }
 
 a {
