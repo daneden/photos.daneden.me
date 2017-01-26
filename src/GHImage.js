@@ -103,7 +103,7 @@ class GHImage extends Component {
         </div>
         <p className="u-mb0">
         {`\u0192${this.props.fStop}, `}
-        {speed} s,{" "}
+        {speed} sec,{" "}
         {this.props.focalLength},{" "}
         ISO {this.props.iso}
         </p>
