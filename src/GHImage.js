@@ -1,8 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Imgix from 'react-imgix';
-import { hScrollCenterElementInParent } from './Utils';
 import Waypoint from 'react-waypoint';
 
 type GHImageProps = {
@@ -11,8 +9,7 @@ type GHImageProps = {
   focalLength: string,
   iso: number,
   name: string,
-  onClick: () => void,
-  scrollIntoView: boolean,
+  onClick?: () => void,
   speed: string,
 }
 
@@ -36,29 +33,11 @@ class GHImage extends Component {
     (this:any).onImageLoad = this.onImageLoad.bind(this)
   }
 
-  componentDidUpdate() {
-    if(this.props.scrollIntoView === true) {
-      this.focusImageInViewport();
-      window.location.hash = this.props.name.split('.')[0];
-    }
-  }
-
   // Reveal images when they're fully loaded
   onImageLoad() {
     this.setState({
       imageLoaded: true
     });
-  }
-
-  // Scroll the image into the viewport
-  focusImageInViewport() {
-    let node = ReactDOM.findDOMNode(this);
-    hScrollCenterElementInParent(node, 500);
-  }
-
-  handleClick() {
-    this.focusImageInViewport();
-    this.props.onClick();
   }
 
   setOnScreen(flag: boolean) {
@@ -120,9 +99,7 @@ class GHImage extends Component {
             minWidth: `calc((100vh - (9rem)) * ${this.props.aspectRatio})`,
           }}
         >
-          <a onClick={this.handleClick.bind(this)} href={'#' + imageName}>
-            {this.state.onScreen ? image : placeholder}
-          </a>
+          {this.state.onScreen ? image : placeholder}
         </div>
         <p className="u-mb0">
         {`\u0192${this.props.fStop}, `}

@@ -14,65 +14,11 @@ type ImageData = {
 
 type AppProps = {
   preface?: String,
-  startingImage: number,
   images: Array<ImageData>
 }
 
 class App extends Component {
   props: AppProps;
-
-  state: {
-    activeImage: number
-  };
-
-  constructor(props: AppProps) {
-    super(props);
-    this.state = {
-      activeImage: this.props.startingImage
-    };
-  }
-
-  static defaultProps = {
-    startingImage: -1
-  };
-
-  componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown.bind(this));
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown.bind(this));
-  }
-
-  handleKeyDown(e: SyntheticKeyboardEvent) {
-    e = e || window.event;
-    // if(e.keyCode !== 37 || e.keyCode !== 39) return;
-
-    let maxIndex = this.props.images.length;
-
-    if(e.keyCode === 37) {
-      // Left arrow key
-      e.preventDefault();
-      this.setState((prev) => {
-        return {
-          activeImage: prev.activeImage > 0 ? prev.activeImage - 1 : 0
-        }
-      });
-    } else if (e.keyCode === 39) {
-      // Right arrow key
-      e.preventDefault();
-      this.setState((prev) => {
-        return {
-          activeImage: prev.activeImage < maxIndex ? prev.activeImage + 1 : maxIndex - 1
-        }
-      });
-    }
-  }
-
-  handleClick(i: number) {
-    // Set the current active image
-    this.setState({activeImage: i});
-  }
 
   renderPreface() {
     if(this.props.preface !== undefined) {
@@ -106,8 +52,6 @@ class App extends Component {
               focalLength={img.focalLength}
               iso={img.iso}
               name={img.fileName}
-              onClick={this.handleClick.bind(this, i)}
-              scrollIntoView={this.state.activeImage === i ? true : false}
               speed={img.shutterSpeed}
             />
           )}
