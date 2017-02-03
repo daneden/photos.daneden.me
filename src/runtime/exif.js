@@ -31,7 +31,7 @@ let logData = (exifData) => {
     const aspectRatio = datum.ImageSize
       .split('x')
       .map(n => parseInt(n))
-      .reduce((a, b) => a/b)
+      .reduce((w, h) => w/h)
     const info = {
       aspectRatio,
       fStop: datum.FNumber,
