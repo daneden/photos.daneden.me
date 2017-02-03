@@ -96,6 +96,7 @@ p {
   height: calc(100vh - (9rem));
 
   transition: .3s ease opacity;
+  opacity: 1;
 }
 
   @media (orientation: portrait) {

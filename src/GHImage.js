@@ -56,7 +56,9 @@ class GHImage extends Component {
     }
 
     const imgClass = [
-      this.state.imageLoaded === true ? 'is-loaded' : 'is-not-loaded',
+      (this.state.imageLoaded === true) && (this.state.onScreen === true)
+        ? 'is-loaded'
+        : 'is-not-loaded',
       'image__img',
     ]
 
@@ -88,7 +90,7 @@ class GHImage extends Component {
         <Waypoint
           key={imageName}
           horizontal={true}
-          topOffset="-200%"
+          topOffset="-75%"
           bottomOffset="0"
           onEnter={this.setOnScreen.bind(this, true)}
           onLeave={this.setOnScreen.bind(this, false)}
