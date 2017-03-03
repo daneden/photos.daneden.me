@@ -12,13 +12,14 @@
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-imgix": "^5.0.0",
+    "react-snapshot": "^1.0.4",
     "react-waypoint": "^5.0.3"
   },
   "scripts": {
     "prestart": "node ./src/runtime/exif.js",
     "start": "react-scripts start",
     "prebuild": "node ./src/runtime/exif.js",
-    "build": "react-scripts build",
+    "build": "react-scripts build && react-snapshot",
     "eject": "react-scripts eject",
     "flow": "flow"
   },

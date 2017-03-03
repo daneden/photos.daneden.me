@@ -1,6 +1,7 @@
 import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { render } from 'react-snapshot';
 
 import './index.css';
 import imageData from './manifest.js';
