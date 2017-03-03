@@ -10,7 +10,7 @@ import SiteInfo from './meta';
 
 imageData.reverse();
 
-ReactDOM.render(
+render(
   <App preface={SiteInfo.fullDescription} images={imageData} />,
   document.getElementById('root')
 );
