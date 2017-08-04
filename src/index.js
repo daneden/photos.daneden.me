@@ -23,5 +23,5 @@ function MouseWheelHandler(e) {
     content = document.querySelector('.site-content')
   }
 
-  content.scrollTo(content.scrollLeft + e.deltaY, 0)
+  if(Math.abs(e.deltaY) > Math.abs(e.deltaX)) content.scrollLeft += e.deltaY
 }
