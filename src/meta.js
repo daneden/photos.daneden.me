@@ -1,8 +1,8 @@
 const SiteInfo = {
   title: "Daniel Eden \u2014 Photos",
-  description: "Photography by Daniel Eden, a designer living in San Francisco, CA.",
+  description: "Photography by Daniel Eden, a designer living in Oakland, CA.",
   fullDescription: `<p>Daniel Eden is a Designer from Manchester, England,
-    living and working in San Francisco, California. He prefers to talk in the
+    living and working in Oakland, California. He prefers to talk in the
     first person.</p>
 
     <p>Amongst thousands of photos, it&rsquo;s easy to lose track of my favorites.
