@@ -80,7 +80,7 @@ p {
 
   .pane--text {
     width: 75vw;
-    max-width: 30em;
+    min-width: 30em;
   }
 
 .pane__image {
