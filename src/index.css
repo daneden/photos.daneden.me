@@ -11,7 +11,7 @@
 
 html {
   height: 100%;
-  font: 87.5%/1.5 -apple-system, "BlinkMacSystemFont", "SF UI", "Helvetica Neue", sans-serif;
+  font: 87.5%/1.5 system-ui, -apple-system, "BlinkMacSystemFont", "SF UI", "Helvetica Neue", sans-serif;
   -webkit-text-size-adjust: 100%;
   overflow: hidden;
 }
@@ -62,7 +62,7 @@ p {
 
 .site-content {
   flex: 1 0 auto;
-  display: table-row;
+  display: flex;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
   align-items: baseline;
@@ -71,7 +71,6 @@ p {
 }
 
 .pane {
-  display: table-cell;
   height: 100%;
   width: auto;
   padding-right: 1.5rem;
@@ -79,8 +78,15 @@ p {
 }
 
   .pane--text {
-    width: 75vw;
-    min-width: 30em;
+    align-self: flex-start;
+    flex-basis: 75vw;
+    min-width: 75vw;
+  }
+
+  @media (min-width: 35rem) {
+    .pane--text {
+      min-width: 30rem;
+    }
   }
 
 .pane__image {
