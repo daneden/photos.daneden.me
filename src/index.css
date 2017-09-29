@@ -79,7 +79,7 @@ p {
 }
 
   .pane--text {
-    min-width: 75vw;
+    width: 75vw;
     max-width: 30em;
   }
 
