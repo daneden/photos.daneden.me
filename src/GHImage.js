@@ -90,7 +90,7 @@ class GHImage extends Component {
         <Waypoint
           key={imageName}
           horizontal={true}
-          topOffset="-175%"
+          topOffset="-200%"
           bottomOffset="0"
           onEnter={this.setOnScreen.bind(this, true)}
           onLeave={this.setOnScreen.bind(this, false)}
