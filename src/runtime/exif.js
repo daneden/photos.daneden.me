@@ -34,9 +34,9 @@ let logData = (exifData) => {
       .reduce((w, h) => w/h)
     const info = {
       aspectRatio,
-      fStop: datum.FNumber,
+      fStop: datum.FNumber || 16,
       fileName: datum.FileName,
-      focalLength: datum.FocalLength.replace(' ', ''),
+      focalLength: datum.FocalLength ? datum.FocalLength.replace(' ', '') : "12mm",
       iso: datum.ISO,
       shutterSpeed: datum.ShutterSpeed,
     }

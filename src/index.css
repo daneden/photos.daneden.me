@@ -1,5 +1,6 @@
 :root {
-  --accent: #EF540D;
+  --accent: #54be71;
+  --pane-radius: 4px;
 }
 
 * {
@@ -10,10 +11,13 @@
 }
 
 html {
-  height: 100%;
+  background-color: #1c1d1d;
+  color: #fbfbfb;
   font: 87.5%/1.5 system-ui, -apple-system, "BlinkMacSystemFont", "SF UI", "Helvetica Neue", sans-serif;
-  -webkit-text-size-adjust: 100%;
+  height: 100%;
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
 }
 
 a {
@@ -90,9 +94,22 @@ p {
   }
 
 .pane__image {
-  background-color: #eee;
+  background-color: rgba(0, 0, 0, .25);
+  border-radius: var(--pane-radius);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, .5);
   margin-bottom: 1.5rem;
 }
+
+  .pane__image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .15);
+    border-radius: var(--pane-radius);
+  }
 
 .image__img {
   display: block;
@@ -103,6 +120,7 @@ p {
 
   transition: .3s ease opacity;
   opacity: 1;
+  border-radius: var(--pane-radius);
 }
 
   @media (orientation: portrait) {
