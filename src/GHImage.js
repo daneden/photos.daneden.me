@@ -5,6 +5,7 @@ import Waypoint from 'react-waypoint';
 
 type GHImageProps = {
   aspectRatio: number,
+  camera: string,
   fStop: number,
   focalLength: string,
   iso: number,
@@ -47,8 +48,8 @@ class GHImage extends Component {
   }
 
   render() {
-    let url = `https://dephotos.imgix.net/${this.props.name}`,
-        imageName = this.props.name.split('.')[0];
+    let url = `https://dephotos.imgix.net/${this.props.name}`
+    const imageName = this.props.name.split('.')[0]
 
     // Use local images for development
     if(process.env.NODE_ENV && process.env.NODE_ENV.toUpperCase() === 'DEVELOPMENT') {
@@ -104,10 +105,11 @@ class GHImage extends Component {
           {this.state.onScreen ? image : placeholder}
         </div>
         <p className="u-mb0">
-        {`\u0192${this.props.fStop}, `}
-        {speed} sec,{" "}
-        {this.props.focalLength},{" "}
-        ISO {this.props.iso}
+          {this.props.camera},{" "}
+          {`\u0192${this.props.fStop}, `}
+          {speed} sec,{" "}
+          {this.props.focalLength},{" "}
+          ISO {this.props.iso}
         </p>
       </div>
     )

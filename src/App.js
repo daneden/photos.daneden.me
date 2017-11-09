@@ -48,6 +48,7 @@ class App extends Component {
           {this.props.images.map((img, i) =>
             <GHImage key={i}
               aspectRatio={img.aspectRatio}
+              camera={img.camera}
               fStop={img.fStop}
               focalLength={img.focalLength}
               iso={img.iso}
