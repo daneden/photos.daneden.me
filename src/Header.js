@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <header className="site-header">
+    <header className="site-header u-mbm">
       <h1 className="site-title">
         <a href="https://daneden.me">Daniel Eden</a> &mdash; Photos
       </h1>

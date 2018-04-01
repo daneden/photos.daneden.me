@@ -1,6 +1,6 @@
 :root {
   --accent: #54be71;
-  --pane-radius: 4px;
+  --imgHeight: 100vh;
 }
 
 * {
@@ -13,7 +13,9 @@
 html {
   background-color: #1c1d1d;
   color: #fbfbfb;
-  font: 87.5%/1.5 system-ui, -apple-system, "BlinkMacSystemFont", "SF UI", "Helvetica Neue", sans-serif;
+  font: 87.5%/1.5 system-ui, -apple-system,
+    "BlinkMacSystemFont", "SF UI",
+    "Helvetica Neue", sans-serif;
   height: 100%;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
@@ -22,6 +24,7 @@ html {
 
 a {
   color: inherit;
+  text-decoration-skip: ink;
 }
 
   a:hover, a:focus {
@@ -60,24 +63,19 @@ p {
   height: 100%;
 }
 
-.site-header {
-  padding: 1.5rem;
-}
-
 .site-content {
   flex: 1 0 auto;
   display: flex;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
   align-items: baseline;
-  padding-left: 1.5rem;
   padding-bottom: 1.5rem;
 }
 
 .pane {
   height: 100%;
   width: auto;
-  padding-right: 1.5rem;
+  margin-right: 1px;
   vertical-align: top;
 }
 
@@ -85,6 +83,7 @@ p {
     align-self: flex-start;
     flex-basis: 75vw;
     min-width: 75vw;
+    padding: 1.5rem;
   }
 
   @media (min-width: 35rem) {
@@ -95,32 +94,18 @@ p {
 
 .pane__image {
   background-color: rgba(0, 0, 0, .25);
-  border-radius: var(--pane-radius);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, .5);
   margin-bottom: 1.5rem;
 }
-
-  .pane__image::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .15);
-    border-radius: var(--pane-radius);
-  }
 
 .image__img {
   display: block;
   width: 100%;
   object-fit: cover;
   /* 100vh - (header padding, header text, metadata text, metadata padding */
-  height: calc(100vh - (9rem));
+  height: var(--imgHeight);
 
   transition: .3s ease opacity;
   opacity: 1;
-  border-radius: var(--pane-radius);
 }
 
   @media (orientation: portrait) {
@@ -133,6 +118,24 @@ p {
     opacity: 0;
   }
 
+.image__info {
+  backdrop-filter: blur(15px);
+  background-color: rgba(0,0,0,.75);
+  bottom: 0;
+  left: 0;
+  padding: .75rem;
+  position: absolute;
+  right: 0;
+}
+
 .u-mb0 {
   margin-bottom: 0;
+}
+
+.u-mbs {
+  margin-bottom: .75rem;
+}
+
+.u-mbm {
+  margin-bottom: 1.5rem;
 }

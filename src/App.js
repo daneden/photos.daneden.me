@@ -23,10 +23,12 @@ class App extends Component {
   renderPreface() {
     if(this.props.preface !== undefined) {
       return (
-        <div
-          dangerouslySetInnerHTML={this.populatePreface()}
-          className="pane pane--text"
-        />
+        <div className="pane pane--text">
+          <Header />
+          <div
+            dangerouslySetInnerHTML={this.populatePreface()}
+          />
+        </div>
       )
     }
   }
@@ -42,7 +44,6 @@ class App extends Component {
   render() {
     return (
       <div className="site-root">
-        <Header />
         <main className="site-content">
           { this.renderPreface() }
           {this.props.images.map((img, i) =>

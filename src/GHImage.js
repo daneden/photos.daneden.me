@@ -97,14 +97,14 @@ class GHImage extends Component {
           onLeave={this.setOnScreen.bind(this, false)}
         />
         <div
-          className="pane__image"
+          className="pane__image u-mb0"
           style={{
-            minWidth: `calc((100vh - (9rem)) * ${this.props.aspectRatio})`,
+            minWidth: `calc((var(--imgHeight)) * ${this.props.aspectRatio})`,
           }}
         >
           {this.state.onScreen ? image : placeholder}
         </div>
-        <p className="u-mb0">
+        <p className="image__info u-mb0">
           {this.props.camera},{" "}
           {`\u0192${this.props.fStop}, `}
           {speed} sec,{" "}
