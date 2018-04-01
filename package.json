@@ -3,12 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "node-exiftool": "^1.0.3",
     "react-scripts": "0.7.0"
   },
   "dependencies": {
     "dist-exiftool": "^10.33.1",
     "flow-bin": "^0.37.4",
+    "node-exiftool": "^2.3.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-imgix": "^5.0.0",
