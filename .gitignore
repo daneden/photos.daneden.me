@@ -9,6 +9,7 @@ build
 # misc
 .DS_Store
 npm-debug.log
+yarn-error.log
 
 # images is symlinked from Dropbox
 images

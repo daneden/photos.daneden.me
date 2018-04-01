@@ -93,7 +93,7 @@ p {
   }
 
 .pane__image {
-  background-color: rgba(0, 0, 0, .25);
+  background-color: rgba(0, 0, 0, .5);
   margin-bottom: 1.5rem;
 }
 
@@ -120,7 +120,7 @@ p {
 
 .image__info {
   backdrop-filter: blur(15px);
-  background-color: rgba(0,0,0,.75);
+  background-color: rgba(28,29,29,.75);
   bottom: 0;
   left: 0;
   padding: .75rem;
