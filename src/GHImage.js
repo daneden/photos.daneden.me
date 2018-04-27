@@ -1,9 +1,9 @@
 // @flow
-import React, { Component } from 'react';
+import * as React from 'react';
 import Imgix from 'react-imgix';
 import Waypoint from 'react-waypoint';
 
-type GHImageProps = {
+type Props = {
   aspectRatio: number,
   camera: string,
   fStop: number,
@@ -14,31 +14,22 @@ type GHImageProps = {
   speed: string,
 }
 
-class GHImage extends Component {
-  props: GHImageProps;
+type State = {
+  imageLoaded: boolean,
+  onScreen: boolean,
+}
 
-  state: {
-    imageLoaded: boolean,
-    onScreen: boolean,
-  };
-
-  constructor(props: GHImageProps) {
-    super(props);
-
-    // Initialise state
-    this.state = {
-      imageLoaded: false,
-      onScreen: false,
-    };
-
-    (this:any).onImageLoad = this.onImageLoad.bind(this)
+class GHImage extends React.Component<Props, State> {
+  state: State = {
+    imageLoaded: true,
+    onScreen: false,
   }
 
   // Reveal images when they're fully loaded
-  onImageLoad() {
+  onImageLoad = () => {
     this.setState({
       imageLoaded: true
-    });
+    })
   }
 
   setOnScreen(flag: boolean) {
@@ -47,13 +38,17 @@ class GHImage extends Component {
     })
   }
 
-  render() {
+  render(): React.Node {
     let url = `https://dephotos.imgix.net/${this.props.name}`
     const imageName = this.props.name.split('.')[0]
 
     // Use local images for development
-    if(process.env.NODE_ENV && process.env.NODE_ENV.toUpperCase() === 'DEVELOPMENT') {
-      url = `${process.env.PUBLIC_URL}/images/${this.props.name}`
+    if(
+      process.env.PUBLIC_URL !== undefined &&
+      process.env.NODE_ENV &&
+      process.env.NODE_ENV.toUpperCase() === 'DEVELOPMENT'
+    ) {
+      url = `${process.env.PUBLIC_URL || ''}/images/${this.props.name}`
     }
 
     const imgClass = [
@@ -70,7 +65,9 @@ class GHImage extends Component {
         }}
         fit={"max"}
         src={url}
-        imgProps={{ onLoad: this.onImageLoad }}
+        imgProps={{
+          onLoad: this.onImageLoad
+        }}
         className={imgClass.join(' ')}
       />
     )

@@ -1,10 +1,11 @@
 // @flow
 import GHImage from './GHImage';
 import Header from './Header';
-import React from 'react';
+import * as React from 'react';
 
 type ImageData = {
   aspectRatio: number,
+  camera: string,
   fStop: number,
   fileName: string,
   focalLength: string,
@@ -12,15 +13,13 @@ type ImageData = {
   shutterSpeed: string,
 }
 
-type AppProps = {
+type Props = {
   preface?: React.Node,
   images: Array<ImageData>
 }
 
-class App extends React.Component {
-  props: AppProps;
-
-  renderPreface(props: AppProps): ?React.Node {
+class App extends React.PureComponent<Props> {
+  renderPreface(props: Props): ?React.Node {
     return props.preface !== undefined ? (
       <div className="pane pane--text">
         <Header />
@@ -29,7 +28,7 @@ class App extends React.Component {
     ) : null
   }
 
-  render() {
+  render(): React.Node {
     const preface = this.renderPreface(this.props)
 
     return (
