@@ -3,17 +3,17 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "react-scripts": "0.7.0"
+    "react-scripts": "1.1.4"
   },
   "dependencies": {
     "dist-exiftool": "^10.33.1",
-    "flow-bin": "^0.37.4",
+    "flow-bin": "^0.71.0",
     "node-exiftool": "^2.3.0",
-    "react": "^15.2.1",
-    "react-dom": "^15.2.1",
-    "react-imgix": "^5.0.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-imgix": "^7.1.1",
     "react-snapshot": "^1.0.4",
-    "react-waypoint": "^5.0.3"
+    "react-waypoint": "^8.0.1"
   },
   "scripts": {
     "prestart": "node ./src/runtime/exif.js",
