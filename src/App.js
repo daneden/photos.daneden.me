@@ -1,7 +1,7 @@
 // @flow
 import GHImage from './GHImage';
 import Header from './Header';
-import React, { Component } from 'react';
+import React from 'react';
 
 type ImageData = {
   aspectRatio: number,
@@ -13,39 +13,29 @@ type ImageData = {
 }
 
 type AppProps = {
-  preface?: String,
+  preface?: React.Node,
   images: Array<ImageData>
 }
 
-class App extends Component {
+class App extends React.Component {
   props: AppProps;
 
-  renderPreface() {
-    if(this.props.preface !== undefined) {
-      return (
-        <div className="pane pane--text">
-          <Header />
-          <div
-            dangerouslySetInnerHTML={this.populatePreface()}
-          />
-        </div>
-      )
-    }
-  }
-
-  // Since dangerouslySetInnerHTML requires an object, this method is
-  // used to populate the div
-  populatePreface() {
-    return {
-      __html: this.props.preface
-    }
+  renderPreface(props: AppProps): ?React.Node {
+    return props.preface !== undefined ? (
+      <div className="pane pane--text">
+        <Header />
+        {props.preface}
+      </div>
+    ) : null
   }
 
   render() {
+    const preface = this.renderPreface(this.props)
+
     return (
       <div className="site-root">
         <main className="site-content">
-          { this.renderPreface() }
+          {preface}
           {this.props.images.map((img, i) =>
             <GHImage key={i}
               aspectRatio={img.aspectRatio}
