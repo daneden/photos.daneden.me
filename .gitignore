@@ -11,8 +11,5 @@ build
 npm-debug.log
 yarn-error.log
 
-# images is symlinked from Dropbox
-images
-
 # ignore generated data
 manifest.js
