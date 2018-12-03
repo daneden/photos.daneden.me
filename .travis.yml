@@ -12,5 +12,8 @@ cache:
 before_install:
   - npm install -g yarn
 
-script:
-  - yarn build
+jobs:
+  - stage: test
+    script: yarn flow
+  - stage: build
+    script: yarn build
