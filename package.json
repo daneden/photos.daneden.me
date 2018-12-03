@@ -4,12 +4,26 @@
   "private": true,
   "devDependencies": {
     "flow-bin": "^0.87.0",
+    "husky": "^1.2.0",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.15.3",
     "react-scripts": "1.1.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "dist-exiftool": "^10.33.1",
     "node-exiftool": "^2.3.0",
-    "react": "^16.3.2",
+    "react": "^16.7.0-alpha.2",
     "react-dom": "^16.3.2",
     "react-imgix": "^7.1.1",
     "react-snapshot": "^1.0.4",
