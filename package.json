@@ -21,7 +21,8 @@
     "prebuild": "node ./src/runtime/exif.js",
     "build": "react-scripts build && react-snapshot",
     "eject": "react-scripts eject",
-    "flow": "flow"
+    "flow": "flow",
+    "test": "flow"
   },
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/config/eslint.js"
