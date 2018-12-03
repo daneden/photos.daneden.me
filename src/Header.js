@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import * as React from "react"
 
 const Header = (): React.Node => {
   return (
@@ -11,4 +11,4 @@ const Header = (): React.Node => {
   )
 }
 
-export default Header;
+export default Header
