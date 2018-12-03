@@ -1,5 +1,5 @@
 // @flow
-import React from 'react'
+import React from "react"
 
 const SiteInfo = {
   title: "Daniel Eden \u2014 Photos",
@@ -7,22 +7,24 @@ const SiteInfo = {
   fullDescription: (
     <React.Fragment>
       <p>
-        Daniel Eden is a Designer from Manchester, England, living and working in
-        Oakland, California. He prefers to talk in the first person.
+        Daniel Eden is a Designer from Manchester, England, living and working
+        in Oakland, California. He prefers to talk in the first person.
       </p>
 
       <p>
-        Amongst thousands of photos, it&rsquo;s easy to lose track of my favorites.
-        This little website serves as a home for the photos I&rsquo;m most proud of.
+        Amongst thousands of photos, it&rsquo;s easy to lose track of my
+        favorites. This little website serves as a home for the photos I&rsquo;m
+        most proud of.
       </p>
 
       <p>
-        You can follow me on <a href="https://twitter.com/_dte">Twitter</a> and
-        {' '}<a href="https://instagram.com/_dte">Instagram</a>.
+        You can follow me on <a href="https://twitter.com/_dte">Twitter</a> and{" "}
+        <a href="https://instagram.com/_dte">Instagram</a>.
       </p>
     </React.Fragment>
   ),
-  image: "https://dephotos.imgix.net/00013.jpg?auto=format&dpr=2&fm=pjpg&crop=faces&fit=max&w=1&h=900"
-};
+  image:
+    "https://dephotos.imgix.net/00013.jpg?auto=format&dpr=2&fm=pjpg&crop=faces&fit=max&w=1&h=900",
+}
 
-export default SiteInfo;
+export default SiteInfo
