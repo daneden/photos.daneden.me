@@ -11,7 +11,6 @@ type Props = {
   focalLength: string,
   iso: number,
   name: string,
-  onClick?: () => void,
   speed: string,
 }
 
