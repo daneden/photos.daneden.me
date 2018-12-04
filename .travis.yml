@@ -13,7 +13,7 @@ before_install:
   - npm install -g yarn
 
 jobs:
-  includes:
+  include:
     - stage: test
       script: yarn flow
     - stage: build
