@@ -18,13 +18,13 @@ type Props = {
   images: Array<ImageData>,
 }
 
-function Preface({ children }): ?React.Node {
-  return children !== undefined ? (
+function Preface({ children }): React.Node {
+  return (
     <div className="pane pane--text">
       <Header />
       {children}
     </div>
-  ) : null
+  )
 }
 
 function App(props: Props): React.Node {
