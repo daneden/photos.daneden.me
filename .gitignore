@@ -2,6 +2,8 @@
 
 # dependencies
 node_modules
+npm-shrinkwrap.json
+package-lock.json
 
 # production
 build
