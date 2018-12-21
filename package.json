@@ -13,7 +13,7 @@
     "react-dom": "^16.3.2",
     "react-imgix": "^7.1.1",
     "react-snapshot": "^1.0.4",
-    "react-waypoint": "^8.0.1"
+    "react-waypoint": "^8.1.0"
   },
   "scripts": {
     "prestart": "node ./src/runtime/exif.js",
