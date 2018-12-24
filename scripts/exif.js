@@ -13,7 +13,7 @@ ep.open()
   .then(pid => {
     console.log("Started exiftool process %s", pid)
     return ep
-      .readMetadata("./public/images/")
+      .readMetadata("./public/images/", null)
       .then(res => {
         logData(res)
       })
@@ -53,7 +53,7 @@ let logData = exifData => {
         ? datum.FocalLength.replace(" ", "")
         : "12mm",
       iso: datum.ISO,
-      shutterSpeed: datum.ShutterSpeed,
+      shutterSpeed: String(datum.ShutterSpeed),
     }
 
     fileInfo.push(info)
@@ -69,10 +69,11 @@ let logData = exifData => {
   })
 
   // Write data to file for the app to consume
-  let writeString = `const imageData = ${JSON.stringify(fileInfo, null, " ")};
+  let writeString = `
+  const imageData: ImageDataArray = ${JSON.stringify(fileInfo, null, " ")};
     export default imageData;`
 
-  fs.writeFile("./src/manifest.js", writeString, err => {
+  fs.writeFile("./src/manifest.ts", writeString, err => {
     if (err) return console.log(err)
   })
 }

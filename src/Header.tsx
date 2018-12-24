@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react"
+import React from "react"
 
-const Header = (): React.Node => {
+const Header: React.SFC = () => {
   return (
     <header className="site-header u-mbm">
       <h1 className="site-title">

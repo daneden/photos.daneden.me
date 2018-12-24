@@ -1,19 +1,18 @@
-// @flow
 import React, { useState } from "react"
 import Imgix from "react-imgix"
 import Waypoint from "react-waypoint"
 
-type Props = {
-  aspectRatio: number,
-  camera: string,
-  fStop: number,
-  focalLength: string,
-  iso: number,
-  name: string,
-  speed: string,
+export type ImageProps = {
+  aspectRatio: number
+  camera: string
+  fStop: number
+  focalLength: string
+  iso: number
+  name: string
+  speed: string
 }
 
-function GHImage(props: Props): React.Node {
+const GHImage: React.SFC<ImageProps> = props => {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [onScreen, setOnScreen] = useState(false)
 

@@ -2,7 +2,7 @@ sudo: false
 
 language: node_js
 node_js:
-  - "9.4.0"
+  - "10.8.0"
 
 cache:
   yarn: true
@@ -14,7 +14,5 @@ before_install:
 
 jobs:
   include:
-    - stage: test
-      script: yarn flow
     - stage: build
       script: yarn build

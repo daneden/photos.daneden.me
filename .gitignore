@@ -13,3 +13,4 @@ yarn-error.log
 
 # ignore generated data
 package-lock.json
+src/react-app-env.d.ts

@@ -2,12 +2,20 @@
   "name": "photos",
   "version": "0.0.1",
   "private": true,
+  "homepage": "https://photos.daneden.me",
+  "engines": {
+    "node": ">=10.8.0"
+  },
   "devDependencies": {
-    "flow-bin": "^0.87.0",
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
     "husky": "^1.2.0",
     "lint-staged": "^8.1.0",
     "prettier": "^1.15.3",
-    "react-scripts": "1.1.4"
+    "react-scripts": "2.1.0",
+    "typescript": "^3.2.2"
   },
   "husky": {
     "hooks": {
@@ -15,7 +23,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,css,md}": [
+    "*.{js,json,css,md,ts,tsx}": [
       "prettier --write",
       "git add"
     ]
@@ -23,22 +31,26 @@
   "dependencies": {
     "dist-exiftool": "^10.33.1",
     "node-exiftool": "^2.3.0",
-    "react": "^16.7.0-alpha.2",
-    "react-dom": "^16.7.0-alpha.2",
+    "react": "16.7.0-alpha.2",
+    "react-dom": "16.7.0-alpha.2",
     "react-imgix": "^7.1.1",
     "react-snapshot": "^1.0.4",
     "react-waypoint": "^8.0.1"
   },
   "scripts": {
-    "prestart": "node ./src/runtime/exif.js",
+    "prestart": "node ./scripts/exif.js",
     "start": "react-scripts start",
-    "prebuild": "node ./src/runtime/exif.js",
+    "prebuild": "node ./scripts/exif.js",
     "build": "react-scripts build && react-snapshot",
-    "eject": "react-scripts eject",
-    "flow": "flow",
-    "test": "flow"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/config/eslint.js"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
