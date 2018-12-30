@@ -3,6 +3,7 @@
 A place for my photos to shine (in more glory than Instagram can deliver).
 
 ## How does this work?
+
 I used the amazing [create-react-app](https://github.com/facebookincubator/create-react-app) as a starting point for this site, and added a few things to make it my own.
 
 First, there's a symlink to a folder of images which is ignored by git. For me, this folder lives in Dropbox, so I can keep it in sync across my computers and server.

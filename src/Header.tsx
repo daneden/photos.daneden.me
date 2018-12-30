@@ -1,6 +1,6 @@
 import React from "react"
 
-const Header: React.SFC = () => {
+const Header: React.StatelessComponent = () => {
   return (
     <header className="site-header u-mbm">
       <h1 className="site-title">

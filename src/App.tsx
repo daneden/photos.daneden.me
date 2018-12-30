@@ -7,18 +7,14 @@ interface AppProps {
   images: Array<ImageMetadata>
 }
 
-interface PrefaceProps {
-  children?: React.ReactNode
-}
-
-const Preface: React.SFC<PrefaceProps> = ({ children }) => (
+const Preface: React.StatelessComponent = ({ children }) => (
   <div className="pane pane--text">
     <Header />
     {children}
   </div>
 )
 
-const App: React.SFC<AppProps> = props => (
+const App: React.StatelessComponent<AppProps> = props => (
   <div className="site-root">
     <main className="site-content">
       <Preface>{props.preface}</Preface>

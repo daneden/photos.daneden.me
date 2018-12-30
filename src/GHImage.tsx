@@ -12,7 +12,7 @@ export type ImageProps = {
   speed: string
 }
 
-const GHImage: React.SFC<ImageProps> = props => {
+const GHImage: React.StatelessComponent<ImageProps> = props => {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [onScreen, setOnScreen] = useState(false)
 
