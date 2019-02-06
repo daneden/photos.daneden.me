@@ -13,8 +13,7 @@
 html {
   background-color: #1c1d1d;
   color: #fbfbfb;
-  font: 87.5%/1.5 system-ui, -apple-system,
-    "BlinkMacSystemFont", "SF UI",
+  font: 87.5%/1.5 system-ui, -apple-system, "BlinkMacSystemFont", "SF UI",
     "Helvetica Neue", sans-serif;
   height: 100%;
   overflow: hidden;
@@ -24,12 +23,17 @@ html {
 
 a {
   color: inherit;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
   text-decoration-skip: ink;
+  transition: 0.2s ease;
+  transition-property: color, text-decoration-color;
 }
 
-  a:hover, a:focus {
-    color: var(--accent);
-  }
+a:hover,
+a:focus {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
 
 p {
   margin-bottom: 1.5rem;
@@ -47,15 +51,6 @@ p {
   font-weight: 400;
   font-size: 1rem;
 }
-
-  .site-title a {
-    text-decoration: none;
-    border-bottom: 2px solid #ccc;
-  }
-
-    .site-title a:hover, .site-title a:focus {
-      border-bottom-color: inherit;
-    }
 
 .site-root {
   display: flex;
@@ -79,21 +74,21 @@ p {
   vertical-align: top;
 }
 
-  .pane--text {
-    align-self: flex-start;
-    flex-basis: 75vw;
-    min-width: 75vw;
-    padding: 1.5rem;
-  }
+.pane--text {
+  align-self: flex-start;
+  flex-basis: 75vw;
+  min-width: 75vw;
+  padding: 1.5rem;
+}
 
-  @media (min-width: 35rem) {
-    .pane--text {
-      min-width: 30rem;
-    }
+@media (min-width: 35rem) {
+  .pane--text {
+    min-width: 30rem;
   }
+}
 
 .pane__image {
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   margin-bottom: 1.5rem;
 }
 
@@ -104,26 +99,26 @@ p {
   /* 100vh - (header padding, header text, metadata text, metadata padding */
   height: var(--imgHeight);
 
-  transition: .3s ease opacity;
+  transition: 0.3s ease opacity;
   opacity: 1;
 }
 
-  @media (orientation: portrait) {
-    .image__img {
-      height: calc(95vh - (9rem));
-    }
+@media (orientation: portrait) {
+  .image__img {
+    height: calc(95vh - (9rem));
   }
+}
 
-  .image__img.is-not-loaded {
-    opacity: 0;
-  }
+.image__img.is-not-loaded {
+  opacity: 0;
+}
 
 .image__info {
   backdrop-filter: blur(15px);
-  background-color: rgba(28,29,29,.75);
+  background-color: rgba(28, 29, 29, 0.75);
   bottom: 0;
   left: 0;
-  padding: .75rem;
+  padding: 0.75rem;
   position: absolute;
   right: 0;
 }
@@ -133,7 +128,7 @@ p {
 }
 
 .u-mbs {
-  margin-bottom: .75rem;
+  margin-bottom: 0.75rem;
 }
 
 .u-mbm {

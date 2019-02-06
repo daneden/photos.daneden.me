@@ -1,7 +1,7 @@
 // @flow
-import GHImage from './GHImage';
-import Header from './Header';
-import * as React from 'react';
+import GHImage from "./GHImage"
+import Header from "./Header"
+import * as React from "react"
 
 type ImageData = {
   aspectRatio: number,
@@ -15,41 +15,38 @@ type ImageData = {
 
 type Props = {
   preface?: React.Node,
-  images: Array<ImageData>
+  images: Array<ImageData>,
 }
 
-class App extends React.PureComponent<Props> {
-  renderPreface(props: Props): ?React.Node {
-    return props.preface !== undefined ? (
-      <div className="pane pane--text">
-        <Header />
-        {props.preface}
-      </div>
-    ) : null
-  }
-
-  render(): React.Node {
-    const preface = this.renderPreface(this.props)
-
-    return (
-      <div className="site-root">
-        <main className="site-content">
-          {preface}
-          {this.props.images.map((img, i) =>
-            <GHImage key={i}
-              aspectRatio={img.aspectRatio}
-              camera={img.camera}
-              fStop={img.fStop}
-              focalLength={img.focalLength}
-              iso={img.iso}
-              name={img.fileName}
-              speed={img.shutterSpeed}
-            />
-          )}
-        </main>
-      </div>
-    );
-  }
+function Preface({ children }): React.Node {
+  return (
+    <div className="pane pane--text">
+      <Header />
+      {children}
+    </div>
+  )
 }
 
-export default App;
+function App(props: Props): React.Node {
+  return (
+    <div className="site-root">
+      <main className="site-content">
+        <Preface>{props.preface}</Preface>
+        {props.images.map((img, i) => (
+          <GHImage
+            key={i}
+            aspectRatio={img.aspectRatio}
+            camera={img.camera}
+            fStop={img.fStop}
+            focalLength={img.focalLength}
+            iso={img.iso}
+            name={img.fileName}
+            speed={img.shutterSpeed}
+          />
+        ))}
+      </main>
+    </div>
+  )
+}
+
+export default App
