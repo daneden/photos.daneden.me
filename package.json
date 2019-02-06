@@ -23,8 +23,8 @@
   "dependencies": {
     "dist-exiftool": "^10.33.1",
     "node-exiftool": "^2.3.0",
-    "react": "^16.7.0-alpha.2",
-    "react-dom": "^16.7.0-alpha.2",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "react-imgix": "^7.1.1",
     "react-snapshot": "^1.0.4",
     "react-waypoint": "^8.0.1"

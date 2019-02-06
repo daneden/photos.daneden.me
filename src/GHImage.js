@@ -1,7 +1,9 @@
 // @flow
-import React, { useState } from "react"
+import * as React from "react"
 import Imgix from "react-imgix"
 import Waypoint from "react-waypoint"
+
+const { useState } = React
 
 type Props = {
   aspectRatio: number,
