@@ -3,7 +3,7 @@ import GHImage from "./GHImage"
 import Header from "./Header"
 import * as React from "react"
 
-type ImageData = {
+export type ImageData = {
   aspectRatio: number,
   camera: string,
   fStop: number,

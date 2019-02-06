@@ -53,7 +53,7 @@ let logData = exifData => {
         ? datum.FocalLength.replace(" ", "")
         : "12mm",
       iso: datum.ISO,
-      shutterSpeed: datum.ShutterSpeed,
+      shutterSpeed: String(datum.ShutterSpeed),
     }
 
     fileInfo.push(info)
@@ -69,8 +69,10 @@ let logData = exifData => {
   })
 
   // Write data to file for the app to consume
-  let writeString = `const imageData = ${JSON.stringify(fileInfo, null, " ")};
-    export default imageData;`
+  let writeString = `// @flow
+import type {ImageData} from "./App";
+const imageData: Array<ImageData> = ${JSON.stringify(fileInfo, null, " ")};
+export default imageData;`
 
   fs.writeFile("./src/manifest.js", writeString, err => {
     if (err) return console.log(err)
