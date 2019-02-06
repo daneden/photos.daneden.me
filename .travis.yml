@@ -15,6 +15,6 @@ before_install:
 jobs:
   include:
     - stage: test
-      script: yarn flow
+      script: yarn test
     - stage: build
       script: yarn build
