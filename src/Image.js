@@ -15,14 +15,15 @@ type Props = {
   speed: string,
 }
 
+// Placeholder element for images pending load
+const placeholder = <div role="presentation" className="image__img" />
+
 function Image(props: Props): React.Node {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [onScreen, setOnScreen] = useState(false)
 
-  let url = `https://dephotos.imgix.net/${props.name}`
-  const imageName = props.name.split(".")[0]
-
   // Use local images for development
+  let url = `https://dephotos.imgix.net/${props.name}`
   if (
     process.env.PUBLIC_URL !== undefined &&
     process.env.NODE_ENV &&
@@ -32,8 +33,9 @@ function Image(props: Props): React.Node {
   }
 
   const imgClass = [
-    imageLoaded && onScreen ? "is-loaded" : "is-not-loaded",
     "image__img",
+    // Controls transition when the image is in view and loaded
+    imageLoaded && onScreen ? "is-loaded" : "is-not-loaded",
   ].join(" ")
 
   const image = (
@@ -50,9 +52,11 @@ function Image(props: Props): React.Node {
     />
   )
 
-  const placeholder = <div role="presentation" className="image__img" />
+  // The image name will be used as the unique key
+  const imageName = props.name.split(".")[0]
 
   const speed =
+    // If the shutter speed is a fraction, we want to style it appropriately.
     String(props.speed).indexOf("/") === -1 ? (
       <span>{props.speed}</span>
     ) : (
@@ -79,7 +83,8 @@ function Image(props: Props): React.Node {
       </div>
       <p className="image__info u-mb0">
         {props.camera}, {`\u0192${props.fStop}, `}
-        {speed} sec, {props.focalLength}, ISO {props.iso}
+        {speed} sec, {props.focalLength}, <span class="caps">ISO</span>{" "}
+        {props.iso}
       </p>
     </div>
   )

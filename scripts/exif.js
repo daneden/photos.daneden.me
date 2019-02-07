@@ -11,7 +11,8 @@ const CAMERAS = {
 
 ep.open()
   .then(pid => {
-    console.log("Started exiftool process %s", pid)
+    console.log("🏁  Started exiftool process %s", pid)
+    console.log("📸  Extracting photo metadata...", pid)
     return ep
       .readMetadata("./public/images/")
       .then(res => {
@@ -23,11 +24,11 @@ ep.open()
   })
   .then(() => {
     return ep.close().then(() => {
-      console.log("Closed exiftool")
+      console.log("✅  Metadata extracted! Closing exiftool.")
     })
   })
   .catch(error => {
-    console.log(error)
+    console.error("🚨  Error extracting photo metadata!", error)
   })
 
 let logData = exifData => {
