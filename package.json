@@ -30,12 +30,13 @@
     "react-waypoint": "^8.1.0"
   },
   "scripts": {
-    "prestart": "node ./src/runtime/exif.js",
+    "prestart": "node ./scripts/exif.js",
     "start": "react-scripts start",
-    "prebuild": "node ./src/runtime/exif.js",
+    "prebuild": "node ./scripts/exif.js",
     "build": "react-scripts build && react-snapshot",
     "eject": "react-scripts eject",
     "flow": "flow",
+    "pretest": "node ./scripts/exif.js",
     "test": "flow"
   },
   "eslintConfig": {
