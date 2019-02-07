@@ -1,5 +1,5 @@
 // @flow
-import GHImage from "./GHImage"
+import Image from "./Image"
 import Header from "./Header"
 import * as React from "react"
 
@@ -33,7 +33,7 @@ function App(props: Props): React.Node {
       <main className="site-content">
         <Preface>{props.preface}</Preface>
         {props.images.map((img, i) => (
-          <GHImage
+          <Image
             key={i}
             aspectRatio={img.aspectRatio}
             camera={img.camera}
