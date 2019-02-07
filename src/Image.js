@@ -15,7 +15,7 @@ type Props = {
   speed: string,
 }
 
-function GHImage(props: Props): React.Node {
+function Image(props: Props): React.Node {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [onScreen, setOnScreen] = useState(false)
 
@@ -32,9 +32,9 @@ function GHImage(props: Props): React.Node {
   }
 
   const imgClass = [
-    imageLoaded === true && onScreen === true ? "is-loaded" : "is-not-loaded",
+    imageLoaded && onScreen ? "is-loaded" : "is-not-loaded",
     "image__img",
-  ]
+  ].join(" ")
 
   const image = (
     <Imgix
@@ -46,7 +46,7 @@ function GHImage(props: Props): React.Node {
       imgProps={{
         onLoad: () => setImageLoaded(true),
       }}
-      className={imgClass.join(" ")}
+      className={imgClass}
     />
   )
 
@@ -85,4 +85,4 @@ function GHImage(props: Props): React.Node {
   )
 }
 
-export default GHImage
+export default Image
