@@ -103,12 +103,6 @@ p {
   opacity: 1;
 }
 
-@media (orientation: portrait) {
-  .image__img {
-    height: calc(95vh - (9rem));
-  }
-}
-
 .image__img.is-not-loaded {
   opacity: 0;
 }
