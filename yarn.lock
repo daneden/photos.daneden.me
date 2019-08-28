@@ -2106,9 +2106,10 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
-dist-exiftool@^10.33.1:
+dist-exiftool@10.53.0:
   version "10.53.0"
   resolved "https://registry.yarnpkg.com/dist-exiftool/-/dist-exiftool-10.53.0.tgz#8bd17bac1e43deacd81d9adacd0f1e24c690100f"
+  integrity sha1-i9F7rB5D3qzYHZrazQ8eJMaQEA8=
   dependencies:
     platform-dependent-modules "0.0.14"
   optionalDependencies:
@@ -2916,9 +2917,10 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-flow-bin@^0.87.0:
+flow-bin@0.87.0:
   version "0.87.0"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.87.0.tgz#fab7f984d8cc767e93fa9eb01cf7d57ed744f19d"
+  integrity sha512-mnvBXXZkUp4y6A96bR5BHa3q1ioIIN2L10w5osxJqagAakTXFYZwjl0t9cT3y2aCEf1wnK6n91xgYypQS/Dqbw==
 
 follow-redirects@^1.0.0:
   version "1.5.1"
@@ -3413,9 +3415,10 @@ https-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
 
-husky@^1.2.0:
+husky@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/husky/-/husky-1.2.0.tgz#d631dda1e4a9ee8ba69a10b0c51a0e2c66e711e5"
+  integrity sha512-/ib3+iycykXC0tYIxsyqierikVa9DA2DrT32UEirqNEFVqOj1bFMTgP3jAz8HM7FgC/C8pc/BTUa9MV2GEkZaA==
   dependencies:
     cosmiconfig "^5.0.6"
     execa "^1.0.0"
@@ -4369,9 +4372,10 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lint-staged@^8.1.0:
+lint-staged@8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-8.1.0.tgz#dbc3ae2565366d8f20efb9f9799d076da64863f2"
+  integrity sha512-yfSkyJy7EuVsaoxtUSEhrD81spdJOe/gMTGea3XaV7HyoRhTb9Gdlp6/JppRZERvKSEYXP9bjcmq6CA5oL2lYQ==
   dependencies:
     "@iamstarkov/listr-update-renderer" "0.4.1"
     chalk "^2.3.1"
@@ -4900,9 +4904,10 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
-node-exiftool@^2.3.0:
+node-exiftool@2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/node-exiftool/-/node-exiftool-2.3.0.tgz#d5142d34de6f1683b4655198b648e7e3ee6e80ac"
+  integrity sha1-1RQtNN5vFoO0ZVGYtkjn4+5ugKw=
   dependencies:
     is-stream "1.1.0"
     restream "1.2.0"
@@ -5739,9 +5744,10 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@^1.15.3:
+prettier@1.15.3:
   version "1.15.3"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.3.tgz#1feaac5bdd181237b54dbe65d874e02a1472786a"
+  integrity sha512-gAU9AGAPMaKb3NNSUUuhhFAS7SCO4ALTN4nRIn6PJ075Qd28Yn2Ig2ahEJWdJwJmlEBTUfC7mMUSFy8MwsOCfg==
 
 pretty-bytes@^4.0.2:
   version "4.0.2"
@@ -5948,7 +5954,7 @@ react-dev-utils@^5.0.1:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^16.8.0:
+react-dom@16.8.0:
   version "16.8.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.0.tgz#18f28d4be3571ed206672a267c66dd083145a9c4"
   integrity sha512-dBzoAGYZpW9Yggp+CzBPC7q1HmWSeRc93DWrwbskmG1eHJWznZB/p0l/Sm+69leIGUS91AXPB/qB3WcPnKx8Sw==
@@ -5962,9 +5968,10 @@ react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
 
-react-imgix@^7.1.1:
+react-imgix@7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/react-imgix/-/react-imgix-7.2.0.tgz#9bdec021461f766fde286bc9a4237b837a9b078e"
+  integrity sha512-Gt4wPvfSUpi3FpOdM6IF+Cx8Q0A4Eo5253e8rxn2C4eKV2gtmmtikDukR76AFlCqS5Zamwaef/E4zwN1rd519Q==
   dependencies:
     js-base64 "^2.3.2"
     jsuri "^1.3.1"
@@ -6019,9 +6026,10 @@ react-scripts@1.1.4:
   optionalDependencies:
     fsevents "^1.1.3"
 
-react-snapshot@^1.0.4:
+react-snapshot@1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/react-snapshot/-/react-snapshot-1.3.0.tgz#f86903017192f96e643d63f8855116b219b76484"
+  integrity sha512-4HRhyB4p2e9E1QcJUwT5iyi2MWrDBr5jEWSU7zFYGSdp2vVwPqoi7IurRRDyt4WsfXAGmnlGRKZWJt+rIhzZ8g==
   dependencies:
     connect-history-api-fallback "^1.3.0"
     express "^4.15.2"
@@ -6031,7 +6039,7 @@ react-snapshot@^1.0.4:
     mkdirp "^0.5.1"
     safe-commander "^2.11.1"
 
-react-waypoint@^8.1.0:
+react-waypoint@8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/react-waypoint/-/react-waypoint-8.1.0.tgz#91d926a2fd1be4cbd0351cb8c3d494fac0ef1699"
   integrity sha512-HoOItWTHObgz7bstmz9p3wuTVDRdsyNspnkAOFz9eE4z8LRj1bbNP9Nzye2k9zsFiujlz8lmp13UFmuXPWXPYw==
@@ -6040,7 +6048,7 @@ react-waypoint@^8.1.0:
     prop-types "^15.0.0"
     react-is "^16.6.3"
 
-react@^16.8.0:
+react@16.8.0:
   version "16.8.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.0.tgz#8533f0e4af818f448a276eae71681d09e8dd970a"
   integrity sha512-g+nikW2D48kqgWSPwNo0NH9tIGG3DsQFlrtrQ1kj6W77z5ahyIHG0w8kPpz4Sdj6gyLnz0lEd/xsjOoGge2MYQ==
