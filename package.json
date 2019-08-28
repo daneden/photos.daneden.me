@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "flow-bin": "^0.87.0",
-    "husky": "^1.2.0",
-    "lint-staged": "^8.1.0",
-    "prettier": "^1.15.3",
+    "flow-bin": "0.87.0",
+    "husky": "1.2.0",
+    "lint-staged": "8.1.0",
+    "prettier": "1.15.3",
     "react-scripts": "1.1.4"
   },
   "husky": {
@@ -21,13 +21,13 @@
     ]
   },
   "dependencies": {
-    "dist-exiftool": "^10.33.1",
-    "node-exiftool": "^2.3.0",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "react-imgix": "^7.1.1",
-    "react-snapshot": "^1.0.4",
-    "react-waypoint": "^8.1.0"
+    "dist-exiftool": "10.53.0",
+    "node-exiftool": "2.3.0",
+    "react": "16.8.0",
+    "react-dom": "16.8.0",
+    "react-imgix": "7.2.0",
+    "react-snapshot": "1.3.0",
+    "react-waypoint": "8.1.0"
   },
   "scripts": {
     "prestart": "node ./scripts/exif.js",
