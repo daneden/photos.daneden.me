@@ -43,6 +43,7 @@ function Image(props: Props): React.Node {
       src={url}
       sizes={`calc((var(--imgHeight)) * ${props.aspectRatio})`}
       htmlAttributes={{
+        loading: "lazy",
         onLoad: () => setImageLoaded(true),
       }}
       className={imgClass}
