@@ -8,7 +8,7 @@ const SiteInfo = {
     <React.Fragment>
       <p>
         Daniel Eden is a Designer from Manchester, England, living and working
-        in Oakland, California. He prefers to talk in the first person.
+        in London. He prefers to talk in the first person.
       </p>
 
       <p>
