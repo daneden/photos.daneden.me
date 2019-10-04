@@ -3,7 +3,7 @@ import React from "react"
 
 const SiteInfo = {
   title: "Daniel Eden \u2014 Photos",
-  description: "Photography by Daniel Eden, a designer living in Oakland, CA.",
+  description: "Photography by Daniel Eden, a designer living in London, UK.",
   fullDescription: (
     <React.Fragment>
       <p>
