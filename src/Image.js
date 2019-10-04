@@ -40,12 +40,9 @@ function Image(props: Props): React.Node {
 
   const image = (
     <Imgix
-      customParams={{
-        fm: "pjpg",
-      }}
-      fit={"max"}
       src={url}
-      imgProps={{
+      sizes={`calc((var(--imgHeight)) * ${props.aspectRatio})`}
+      htmlAttributes={{
         onLoad: () => setImageLoaded(true),
       }}
       className={imgClass}
@@ -83,7 +80,7 @@ function Image(props: Props): React.Node {
       </div>
       <p className="image__info u-mb0">
         {props.camera}, {`\u0192${props.fStop}, `}
-        {speed} sec, {props.focalLength}, <span class="caps">ISO</span>{" "}
+        {speed} sec, {props.focalLength}, <span className="caps">ISO</span>{" "}
         {props.iso}
       </p>
     </div>
