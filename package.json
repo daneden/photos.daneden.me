@@ -7,7 +7,7 @@
     "husky": "3.0.5",
     "lint-staged": "8.2.1",
     "prettier": "1.18.2",
-    "react-scripts": "1.1.5"
+    "react-scripts": "3.3.0"
   },
   "husky": {
     "hooks": {
