@@ -4,7 +4,7 @@
   "private": true,
   "devDependencies": {
     "flow-bin": "0.106.3",
-    "husky": "3.1.0",
+    "husky": "4.0.0",
     "lint-staged": "8.2.1",
     "prettier": "1.19.1",
     "react-scripts": "1.1.5"
