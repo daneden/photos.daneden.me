@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 
 export default function useMatchMedia(query) {
-  const mq = window?.matchMedia(query)
+  const mq =
+    window.matchMedia !== undefined
+      ? window.matchMedia(query)
+      : { matches: false }
   const [matches, setMatches] = useState(mq.matches)
 
   useEffect(() => {
@@ -9,10 +12,12 @@ export default function useMatchMedia(query) {
       setMatches(mediaQueryList.matches)
     }
 
-    mq.addListener(updateMqMatches)
+    if (mq instanceof MediaQueryList) {
+      mq.addListener(updateMqMatches)
 
-    return () => {
-      mq.removeListener(updateMqMatches)
+      return () => {
+        mq.removeListener(updateMqMatches)
+      }
     }
   }, [mq])
 
