@@ -66,7 +66,7 @@ function Image(props: Props): ReactElement {
     String(props.speed).includes("/") ? (
       <span className="frac">{props.speed}</span>
     ) : (
-      <span>{props.speed}</span>
+      props.speed
     )
 
   return (
