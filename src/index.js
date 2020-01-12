@@ -1,8 +1,7 @@
 // @flow
-import App from "./App"
 import React from "react"
 import { render } from "react-snapshot"
-
+import App from "./App"
 import "./index.css"
 import imageData from "./manifest.js"
 import SiteInfo from "./meta"
@@ -15,12 +14,12 @@ render(
 )
 
 // change vertical scroll to horizontal in content
-let content: ?HTMLElement = document.querySelector(".site-content")
+let content: ?HTMLElement = document.body
 window.addEventListener("mousewheel", MouseWheelHandler)
 
 function MouseWheelHandler(e) {
   if (content === undefined) {
-    content = document.querySelector(".site-content")
+    content = document.body
   } else {
     // $FlowFixMe
     content.scrollLeft += e.deltaY

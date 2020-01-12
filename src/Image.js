@@ -1,9 +1,10 @@
 // @flow
 import * as React from "react"
 import Imgix from "react-imgix"
-import { Waypoint } from "react-waypoint"
+import useIntersect from "./useIntersection"
+import useMatchMedia from "./useMatchMedia"
 
-const { useState } = React
+const { useEffect, useState } = React
 
 type Props = {
   aspectRatio: number,
@@ -15,12 +16,28 @@ type Props = {
   speed: string,
 }
 
+const KEYFRAMES = 200
+const buildThresholdArray = () =>
+  Array.from(Array(KEYFRAMES).keys(), i => i / KEYFRAMES)
+
 // Placeholder element for images pending load
 const placeholder = <div role="presentation" className="image__img" />
 
 function Image(props: Props): React.Node {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [onScreen, setOnScreen] = useState(false)
+  const isPortrait = useMatchMedia("(orientation: portrait)")
+  const [ref, entry] = useIntersect({
+    threshold: buildThresholdArray(),
+  })
+
+  useEffect(() => {
+    if (entry.intersectionRatio > 0) {
+      setOnScreen(true)
+    } else {
+      setOnScreen(false)
+    }
+  }, [entry])
 
   // Use local images for development
   let url = `https://dephotos.imgix.net/${props.name}`
@@ -61,20 +78,25 @@ function Image(props: Props): React.Node {
       <span className="frac">{props.speed}</span>
     )
 
+  const size = `calc(var(--imgSize) ${isPortrait ? "/" : "*"} ${
+    props.aspectRatio
+  })`
+
   return (
-    <div id={imageName} className="pane page--image">
-      <Waypoint
-        key={imageName}
-        horizontal={true}
-        topOffset="-200%"
-        bottomOffset="0"
-        onEnter={() => setOnScreen(true)}
-        onLeave={() => setOnScreen(false)}
-      />
+    <div
+      ref={ref}
+      id={imageName}
+      className="pane page--image"
+      style={{
+        opacity: entry.intersectionRatio,
+        transform: `scale(${0.9 + entry.intersectionRatio / 10})`,
+      }}
+    >
       <div
         className="pane__image u-mb0"
         style={{
-          minWidth: `calc((var(--imgHeight)) * ${props.aspectRatio})`,
+          minWidth: !isPortrait ? size : "100%",
+          minHeight: isPortrait ? size : null,
         }}
       >
         {onScreen ? image : placeholder}
