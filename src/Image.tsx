@@ -3,7 +3,6 @@ import * as React from "react"
 import { ReactElement } from "react"
 import Imgix from "react-imgix"
 import useIntersect from "./useIntersection"
-import useMatchMedia from "./useMatchMedia"
 
 const { useEffect, useState } = React
 
@@ -17,7 +16,7 @@ type Props = {
   speed: string
 }
 
-const KEYFRAMES = 200
+const KEYFRAMES = 10
 const buildThresholdArray = () =>
   Array.from(Array(KEYFRAMES).keys(), i => i / KEYFRAMES)
 
@@ -27,7 +26,6 @@ const placeholder = <div role="presentation" className="image__img" />
 function Image(props: Props): ReactElement {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [onScreen, setOnScreen] = useState(false)
-  const isPortrait = useMatchMedia("(orientation: portrait)")
   const [ref, entry] = useIntersect({
     rootMargin: "24px",
     threshold: buildThresholdArray(),
@@ -53,6 +51,7 @@ function Image(props: Props): ReactElement {
     "image__img",
     // Controls transition when the image is in view and loaded
     imageLoaded && onScreen ? "is-loaded" : "is-not-loaded",
+    props.aspectRatio < 1 ? "is-portrait" : "",
   ].join(" ")
 
   const image = (
@@ -70,33 +69,21 @@ function Image(props: Props): ReactElement {
   const speed =
     // If the shutter speed is a fraction, we want to style it appropriately.
     String(props.speed).includes("/") ? (
-      <span>{props.speed}</span>
-    ) : (
       <span className="frac">{props.speed}</span>
+    ) : (
+      <span>{props.speed}</span>
     )
-
-  const size = `calc(var(--imgSize) ${isPortrait ? "/" : "*"} ${
-    props.aspectRatio
-  })`
 
   return (
     <div
       ref={ref}
-      className="pane page--image"
+      className="pane pane--image"
       style={{
         opacity: entry?.intersectionRatio,
         transform: `scale(${0.9 + entry?.intersectionRatio / 10})`,
       }}
     >
-      <div
-        className="pane__image"
-        style={{
-          minWidth: !isPortrait ? size : "100%",
-          minHeight: isPortrait ? size : null,
-        }}
-      >
-        {onScreen ? image : placeholder}
-      </div>
+      <div className="pane__image">{onScreen ? image : placeholder}</div>
       <p className="image__info">
         {props.camera}, {`\u0192${props.fStop}, `}
         {speed} sec, {props.focalLength}, <span className="caps">ISO</span>{" "}
