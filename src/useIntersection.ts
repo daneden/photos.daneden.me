@@ -1,7 +1,15 @@
 import { useEffect, useRef, useState } from "react"
 
-export default ({ root = null, rootMargin, threshold = 0 }) => {
-  const [entry, updateEntry] = useState({})
+export default ({
+  root = null,
+  rootMargin,
+  threshold = 0,
+}: {
+  root?: Element
+  rootMargin?: string
+  threshold: number | number[]
+}) => {
+  const [entry, updateEntry] = useState(null)
   const [node, setNode] = useState(null)
 
   const observer =
@@ -22,7 +30,7 @@ export default ({ root = null, rootMargin, threshold = 0 }) => {
     if (node) currentObserver.observe(node)
 
     return () => currentObserver.disconnect()
-  }, [node])
+  }, [node, observer])
 
   return [setNode, entry]
 }

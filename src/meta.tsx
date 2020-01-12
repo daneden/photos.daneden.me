@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 
-const SiteInfo = {
+const siteInfo = {
   title: "Daniel Eden \u2014 Photos",
   description: "Photography by Daniel Eden, a designer living in London, UK.",
   fullDescription: (
@@ -27,4 +27,4 @@ const SiteInfo = {
     "https://dephotos.imgix.net/00013.jpg?auto=format&dpr=2&fm=pjpg&crop=faces&fit=max&w=1&h=900",
 }
 
-export default SiteInfo
+export default siteInfo

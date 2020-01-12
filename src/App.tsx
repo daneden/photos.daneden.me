@@ -1,24 +1,25 @@
 // @flow
 import * as React from "react"
+import { ReactElement, ReactNode } from "react"
 import Header from "./Header"
 import Image from "./Image"
 
 export type ImageData = {
-  aspectRatio: number,
-  camera: string,
-  fStop: number,
-  fileName: string,
-  focalLength: string,
-  iso: number,
-  shutterSpeed: string,
+  aspectRatio: number
+  camera: string
+  fStop: number
+  fileName: string
+  focalLength: string
+  iso: number
+  shutterSpeed: string
 }
 
 type Props = {
-  preface?: React.Node,
-  images: Array<ImageData>,
+  preface?: ReactElement
+  images: Array<ImageData>
 }
 
-function Preface({ children }): React.Node {
+function Preface({ children }: { children: ReactNode }): ReactElement {
   return (
     <div className="pane pane--text">
       <Header />
@@ -27,7 +28,7 @@ function Preface({ children }): React.Node {
   )
 }
 
-function App(props: Props): React.Node {
+function App(props: Props): ReactElement {
   return (
     <main className="site-content">
       <Preface>{props.preface}</Preface>

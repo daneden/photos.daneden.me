@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react"
+import { ReactElement } from "react"
 import Imgix from "react-imgix"
 import useIntersect from "./useIntersection"
 import useMatchMedia from "./useMatchMedia"
@@ -7,13 +8,13 @@ import useMatchMedia from "./useMatchMedia"
 const { useEffect, useState } = React
 
 type Props = {
-  aspectRatio: number,
-  camera: string,
-  fStop: number,
-  focalLength: string,
-  iso: number,
-  name: string,
-  speed: string,
+  aspectRatio: number
+  camera: string
+  fStop: number
+  focalLength: string
+  iso: number
+  name: string
+  speed: string
 }
 
 const KEYFRAMES = 200
@@ -23,7 +24,7 @@ const buildThresholdArray = () =>
 // Placeholder element for images pending load
 const placeholder = <div role="presentation" className="image__img" />
 
-function Image(props: Props): React.Node {
+function Image(props: Props): ReactElement {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [onScreen, setOnScreen] = useState(false)
   const isPortrait = useMatchMedia("(orientation: portrait)")
@@ -32,7 +33,7 @@ function Image(props: Props): React.Node {
   })
 
   useEffect(() => {
-    if (entry.intersectionRatio > 0) {
+    if (entry?.intersectionRatio > 0) {
       setOnScreen(true)
     } else {
       setOnScreen(false)
@@ -88,8 +89,8 @@ function Image(props: Props): React.Node {
       id={imageName}
       className="pane page--image"
       style={{
-        opacity: entry.intersectionRatio,
-        transform: `scale(${0.9 + entry.intersectionRatio / 10})`,
+        opacity: entry?.intersectionRatio,
+        transform: `scale(${0.9 + entry?.intersectionRatio / 10})`,
       }}
     >
       <div

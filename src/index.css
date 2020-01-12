@@ -57,7 +57,7 @@ body {
 a {
   color: inherit;
   text-decoration-color: rgba(255, 255, 255, 0.5);
-  text-decoration-skip: ink;
+  text-decoration-skip-ink: auto;
   transition: 0.2s ease;
   transition-property: color, text-decoration-color;
 }
