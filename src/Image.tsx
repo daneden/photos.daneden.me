@@ -29,14 +29,13 @@ function Image(props: Props): ReactElement {
   const [onScreen, setOnScreen] = useState(false)
   const isPortrait = useMatchMedia("(orientation: portrait)")
   const [ref, entry] = useIntersect({
+    rootMargin: "24px",
     threshold: buildThresholdArray(),
   })
 
   useEffect(() => {
     if (entry?.intersectionRatio > 0) {
       setOnScreen(true)
-    } else {
-      setOnScreen(false)
     }
   }, [entry])
 
@@ -68,12 +67,9 @@ function Image(props: Props): ReactElement {
     />
   )
 
-  // The image name will be used as the unique key
-  const imageName = props.name.split(".")[0]
-
   const speed =
     // If the shutter speed is a fraction, we want to style it appropriately.
-    String(props.speed).indexOf("/") === -1 ? (
+    String(props.speed).includes("/") ? (
       <span>{props.speed}</span>
     ) : (
       <span className="frac">{props.speed}</span>
@@ -86,7 +82,6 @@ function Image(props: Props): ReactElement {
   return (
     <div
       ref={ref}
-      id={imageName}
       className="pane page--image"
       style={{
         opacity: entry?.intersectionRatio,
@@ -94,7 +89,7 @@ function Image(props: Props): ReactElement {
       }}
     >
       <div
-        className="pane__image u-mb0"
+        className="pane__image"
         style={{
           minWidth: !isPortrait ? size : "100%",
           minHeight: isPortrait ? size : null,
@@ -102,7 +97,7 @@ function Image(props: Props): ReactElement {
       >
         {onScreen ? image : placeholder}
       </div>
-      <p className="image__info u-mb0">
+      <p className="image__info">
         {props.camera}, {`\u0192${props.fStop}, `}
         {speed} sec, {props.focalLength}, <span className="caps">ISO</span>{" "}
         {props.iso}

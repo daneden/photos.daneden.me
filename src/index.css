@@ -54,6 +54,12 @@ body {
   }
 }
 
+@media (max-width: 40rem) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
 a {
   color: inherit;
   text-decoration-color: rgba(255, 255, 255, 0.5);
@@ -68,7 +74,7 @@ a:focus {
 }
 
 p {
-  margin-bottom: var(--baseline);
+  margin-bottom: calc(var(--baseline) / 2);
 }
 
 .frac {
@@ -98,9 +104,8 @@ p {
 .pane {
   flex: 1 1 auto;
   width: auto;
-  margin-right: var(--baseline);
   vertical-align: top;
-  padding: var(--baseline);
+  padding: calc(var(--baseline) / 2);
 }
 
 @media (orientation: portrait) {
@@ -116,9 +121,7 @@ p {
   .pane {
     height: auto;
     width: auto;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: var(--baseline);
+    margin: auto;
   }
 }
 
@@ -134,21 +137,23 @@ p {
 }
 
 .pane__image {
+  display: flex;
+  margin-bottom: calc(var(--baseline) / 2);
+  max-height: 80vh;
   transition: 0.2s ease;
   transition-property: transform, opacity;
-  max-height: 80vh;
 }
 
 .image__img {
   display: block;
   width: 100%;
+  flex: 0 0 100%;
   object-fit: cover;
   /* 100vh - (header padding, header text, metadata text, metadata padding */
   height: var(--imgSize);
 
   transition: 0.3s ease opacity;
   opacity: 1;
-  margin-bottom: calc(var(--baseline) / 2);
 }
 
 @media (orientation: portrait) {
