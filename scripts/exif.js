@@ -70,8 +70,7 @@ let logData = exifData => {
   })
 
   // Write data to file for the app to consume
-  let writeString = `// @flow
-import { ImageData } from "./App"
+  let writeString = `import { ImageData } from "./App"
 const imageData: Array<ImageData> = ${JSON.stringify(fileInfo, null, " ")}
 export default imageData`
 

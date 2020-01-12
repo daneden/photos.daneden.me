@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react"
 import { ReactElement, ReactNode } from "react"
 import Header from "./Header"

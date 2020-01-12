@@ -1,4 +1,3 @@
-// @flow
 import { ImageData } from "./App"
 const imageData: Array<ImageData> = [
  {

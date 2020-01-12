@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react"
 import { ReactElement } from "react"
 import Imgix from "react-imgix"
@@ -19,9 +18,6 @@ type Props = {
 const KEYFRAMES = 10
 const buildThresholdArray = () =>
   Array.from(Array(KEYFRAMES).keys(), i => i / KEYFRAMES)
-
-// Placeholder element for images pending load
-const placeholder = <div role="presentation" className="image__img" />
 
 function Image(props: Props): ReactElement {
   const [imageLoaded, setImageLoaded] = useState(false)
@@ -51,7 +47,6 @@ function Image(props: Props): ReactElement {
     "image__img",
     // Controls transition when the image is in view and loaded
     imageLoaded && onScreen ? "is-loaded" : "is-not-loaded",
-    props.aspectRatio < 1 ? "is-portrait" : "",
   ].join(" ")
 
   const image = (
@@ -83,7 +78,7 @@ function Image(props: Props): ReactElement {
         transform: `scale(${0.9 + entry?.intersectionRatio / 10})`,
       }}
     >
-      <div className="pane__image">{onScreen ? image : placeholder}</div>
+      <div className="pane__image">{onScreen ? image : null}</div>
       <p className="image__info">
         {props.camera}, {`\u0192${props.fStop}, `}
         {speed} sec, {props.focalLength}, <span className="caps">ISO</span>{" "}

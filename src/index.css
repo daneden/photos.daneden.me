@@ -7,12 +7,6 @@
   --background: var(--peach);
 }
 
-@media (orientation: portrait) {
-  :root {
-    --imgSize: calc(100vw - calc(var(--baseline) * 2));
-  }
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground: var(--peach);
@@ -163,11 +157,6 @@ p {
 
   transition: 0.3s ease opacity;
   opacity: 1;
-}
-
-.image__img.is-portrait {
-  height: 100%;
-  width: auto;
 }
 
 .image__img.is-not-loaded {
