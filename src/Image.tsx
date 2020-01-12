@@ -15,9 +15,7 @@ type Props = {
   speed: string
 }
 
-const KEYFRAMES = 10
-const buildThresholdArray = () =>
-  Array.from(Array(KEYFRAMES).keys(), i => i / KEYFRAMES)
+const buildThresholdArray = () => Array.from(Array(10).keys(), i => i / 10)
 
 function Image(props: Props): ReactElement {
   const [imageLoaded, setImageLoaded] = useState(false)
