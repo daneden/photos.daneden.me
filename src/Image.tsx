@@ -8,8 +8,9 @@ const { useEffect, useState } = React
 type Props = {
   aspectRatio: number
   camera: string
-  fStop: number
+  description: string
   focalLength: string
+  fStop: number
   iso: number
   name: string
   speed: string
@@ -52,6 +53,7 @@ function Image(props: Props): ReactElement {
       src={url}
       sizes={`calc((var(--imgHeight)) * ${props.aspectRatio})`}
       htmlAttributes={{
+        alt: props.description,
         loading: "lazy",
         onLoad: () => setImageLoaded(true),
       }}

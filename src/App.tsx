@@ -6,9 +6,10 @@ import Image from "./Image"
 export type ImageData = {
   aspectRatio: number
   camera: string
-  fStop: number
+  description: string
   fileName: string
   focalLength: string
+  fStop: number
   iso: number
   shutterSpeed: string
 }
@@ -41,6 +42,7 @@ function App(props: Props): ReactElement {
           iso={img.iso}
           name={img.fileName}
           speed={img.shutterSpeed}
+          description={img.description}
         />
       ))}
     </main>

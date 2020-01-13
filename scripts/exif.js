@@ -55,6 +55,7 @@ let logData = exifData => {
         : "12mm",
       iso: datum.ISO,
       shutterSpeed: String(datum.ShutterSpeed),
+      description: datum.Description || "",
     }
 
     fileInfo.push(info)
