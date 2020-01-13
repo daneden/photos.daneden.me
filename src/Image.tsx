@@ -56,7 +56,9 @@ function Image(props: Props): ReactElement {
   const image = (
     <Imgix
       src={url}
-      sizes={`calc((var(--imgSize)) * ${props.aspectRatio})`}
+      sizes={`(orientation: portrait) calc(100vw - (1.5rem / 2)),
+        (orientation: landscape) calc(80vh * ${props.aspectRatio}),
+        300px`}
       htmlAttributes={{
         alt: props.description,
         loading: "lazy",
