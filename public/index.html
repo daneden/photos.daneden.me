@@ -29,6 +29,12 @@
       href="https://fonts.googleapis.com/css?family=Work+Sans:500&display=swap&subset=latin-ext"
       rel="stylesheet"
     />
+    <script>
+      if (!(navigator.userAgent.match(/Node\.js/i) && window && window.reactSnapshotRender)) {
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+      }
+    </script>
   </head>
   <body>
     <div class="site-root" id="root"></div>

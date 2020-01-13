@@ -94,7 +94,6 @@ p {
 .site-content {
   flex: 1 0 auto;
   display: flex;
-  align-items: baseline;
   max-height: var(--imgSize);
 }
 
@@ -161,10 +160,13 @@ p {
 
 .image__img.is-not-loaded {
   height: 0;
+  position: absolute;
 }
 
 .js .placeholder {
   --aspect-ratio: 1;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
   max-height: var(--imgSize);
   height: var(--imgSize);
   width: calc(var(--imgSize) * var(--aspect-ratio));

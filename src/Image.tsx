@@ -16,7 +16,7 @@ type Props = {
   speed: string
 }
 
-const buildThresholdArray = () => Array.from(Array(10).keys(), i => i / 10)
+const thresholdArray = Array.from(Array(10).keys(), i => i / 10)
 
 const Placeholder = ({ aspectRatio }: { aspectRatio: number }) => {
   const style = { "--aspect-ratio": aspectRatio } as CSSProperties
@@ -28,7 +28,7 @@ function Image(props: Props): ReactElement {
   const [onScreen, setOnScreen] = useState(false)
   const [ref, entry] = useIntersect({
     rootMargin: "24px",
-    threshold: buildThresholdArray(),
+    threshold: thresholdArray,
   })
 
   useEffect(() => {
@@ -70,7 +70,7 @@ function Image(props: Props): ReactElement {
 
   const speed =
     // If the shutter speed is a fraction, we want to style it appropriately.
-    String(props.speed).includes("/") ? (
+    props.speed.includes("/") ? (
       <span className="frac">{props.speed}</span>
     ) : (
       props.speed
@@ -81,13 +81,13 @@ function Image(props: Props): ReactElement {
       ref={ref}
       className="pane pane--image"
       style={{
-        opacity: entry?.intersectionRatio,
+        opacity: Math.max(entry?.intersectionRatio || 0, 0.1),
         transform: `scale(${0.9 + entry?.intersectionRatio / 10})`,
       }}
     >
       <div className="pane__image">
         {onScreen && image}
-        {!imageLoaded && <Placeholder aspectRatio={props.aspectRatio} />}
+        {!imageLoaded ? <Placeholder aspectRatio={props.aspectRatio} /> : null}
         <noscript>
           <img alt={props.description} className={imgClass} src={url} />
         </noscript>
