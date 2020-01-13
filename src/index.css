@@ -159,6 +159,10 @@ p {
   opacity: 1;
 }
 
+.image__img.is-not-loaded {
+  height: 0;
+}
+
 .js .placeholder {
   --aspect-ratio: 1;
   max-height: var(--imgSize);

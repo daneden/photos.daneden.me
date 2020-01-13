@@ -86,7 +86,8 @@ function Image(props: Props): ReactElement {
       }}
     >
       <div className="pane__image">
-        {onScreen ? image : <Placeholder aspectRatio={props.aspectRatio} />}
+        {onScreen && image}
+        {!imageLoaded && <Placeholder aspectRatio={props.aspectRatio} />}
         <noscript>
           <img alt={props.description} className={imgClass} src={url} />
         </noscript>
