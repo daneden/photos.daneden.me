@@ -12,6 +12,23 @@ render(
   document.getElementById("root")
 )
 
+declare global {
+  interface Window {
+    reactSnapshotRender: any
+  }
+}
+
+if (
+  !(
+    navigator.userAgent.match(/Node\.js/i) &&
+    window &&
+    window.reactSnapshotRender
+  )
+) {
+  document.documentElement.classList.remove("no-js")
+  document.documentElement.classList.add("js")
+}
+
 let content: HTMLElement = document.body
 window.addEventListener("mousewheel", MouseWheelHandler)
 

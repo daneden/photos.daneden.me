@@ -159,7 +159,7 @@ p {
   opacity: 1;
 }
 
-.placeholder {
+.js .placeholder {
   --aspect-ratio: 1;
   max-height: var(--imgSize);
   height: var(--imgSize);
@@ -167,12 +167,12 @@ p {
 }
 
 @media (orientation: portrait) {
-  .placeholder {
+  .js .placeholder {
     width: 100%;
     height: calc(var(--imgSize) / var(--aspect-ratio));
   }
 }
 
-.image__img.is-not-loaded {
+.js .image__img.is-not-loaded {
   opacity: 0;
 }
