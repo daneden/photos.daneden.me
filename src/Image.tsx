@@ -1,26 +1,35 @@
-// @flow
 import * as React from "react"
+import { ReactElement } from "react"
 import Imgix from "react-imgix"
-import { Waypoint } from "react-waypoint"
+import useIntersect from "./useIntersection"
 
-const { useState } = React
+const { useEffect, useState } = React
 
 type Props = {
-  aspectRatio: number,
-  camera: string,
-  fStop: number,
-  focalLength: string,
-  iso: number,
-  name: string,
-  speed: string,
+  aspectRatio: number
+  camera: string
+  fStop: number
+  focalLength: string
+  iso: number
+  name: string
+  speed: string
 }
 
-// Placeholder element for images pending load
-const placeholder = <div role="presentation" className="image__img" />
+const buildThresholdArray = () => Array.from(Array(10).keys(), i => i / 10)
 
-function Image(props: Props): React.Node {
+function Image(props: Props): ReactElement {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [onScreen, setOnScreen] = useState(false)
+  const [ref, entry] = useIntersect({
+    rootMargin: "24px",
+    threshold: buildThresholdArray(),
+  })
+
+  useEffect(() => {
+    if (entry?.intersectionRatio > 0) {
+      setOnScreen(true)
+    }
+  }, [entry])
 
   // Use local images for development
   let url = `https://dephotos.imgix.net/${props.name}`
@@ -50,36 +59,25 @@ function Image(props: Props): React.Node {
     />
   )
 
-  // The image name will be used as the unique key
-  const imageName = props.name.split(".")[0]
-
   const speed =
     // If the shutter speed is a fraction, we want to style it appropriately.
-    String(props.speed).indexOf("/") === -1 ? (
-      <span>{props.speed}</span>
-    ) : (
+    String(props.speed).includes("/") ? (
       <span className="frac">{props.speed}</span>
+    ) : (
+      props.speed
     )
 
   return (
-    <div id={imageName} className="pane page--image">
-      <Waypoint
-        key={imageName}
-        horizontal={true}
-        topOffset="-200%"
-        bottomOffset="0"
-        onEnter={() => setOnScreen(true)}
-        onLeave={() => setOnScreen(false)}
-      />
-      <div
-        className="pane__image u-mb0"
-        style={{
-          minWidth: `calc((var(--imgHeight)) * ${props.aspectRatio})`,
-        }}
-      >
-        {onScreen ? image : placeholder}
-      </div>
-      <p className="image__info u-mb0">
+    <div
+      ref={ref}
+      className="pane pane--image"
+      style={{
+        opacity: entry?.intersectionRatio,
+        transform: `scale(${0.9 + entry?.intersectionRatio / 10})`,
+      }}
+    >
+      <div className="pane__image">{onScreen ? image : null}</div>
+      <p className="image__info">
         {props.camera}, {`\u0192${props.fStop}, `}
         {speed} sec, {props.focalLength}, <span className="caps">ISO</span>{" "}
         {props.iso}

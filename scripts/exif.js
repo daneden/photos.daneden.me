@@ -70,12 +70,11 @@ let logData = exifData => {
   })
 
   // Write data to file for the app to consume
-  let writeString = `// @flow
-import type {ImageData} from "./App";
-const imageData: Array<ImageData> = ${JSON.stringify(fileInfo, null, " ")};
-export default imageData;`
+  let writeString = `import { ImageData } from "./App"
+const imageData: Array<ImageData> = ${JSON.stringify(fileInfo, null, " ")}
+export default imageData`
 
-  fs.writeFile("./src/manifest.js", writeString, err => {
+  fs.writeFile("./src/manifest.ts", writeString, err => {
     if (err) return console.log(err)
   })
 }

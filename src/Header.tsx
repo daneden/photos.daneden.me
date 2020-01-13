@@ -1,7 +1,7 @@
-// @flow
 import * as React from "react"
+import { ReactElement } from "react"
 
-const Header = (): React.Node => {
+const Header = (): ReactElement => {
   return (
     <header className="site-header u-mb">
       <h1 className="site-title">
