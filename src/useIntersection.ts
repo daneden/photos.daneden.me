@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useLayoutEffect, useRef, useState } from "react"
 
 export default ({
   root = null,
@@ -23,7 +23,7 @@ export default ({
         )
       : null
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const { current: currentObserver } = observer
     currentObserver.disconnect()
 
