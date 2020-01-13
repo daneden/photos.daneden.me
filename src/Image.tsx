@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ReactElement } from "react"
+import { CSSProperties, ReactElement } from "react"
 import Imgix from "react-imgix"
 import useIntersect from "./useIntersection"
 
@@ -17,6 +17,11 @@ type Props = {
 }
 
 const buildThresholdArray = () => Array.from(Array(10).keys(), i => i / 10)
+
+const Placeholder = ({ aspectRatio }: { aspectRatio: number }) => {
+  const style = { "--aspect-ratio": aspectRatio } as CSSProperties
+  return <div role="presentation" className="placeholder" style={style} />
+}
 
 function Image(props: Props): ReactElement {
   const [imageLoaded, setImageLoaded] = useState(false)
@@ -51,7 +56,7 @@ function Image(props: Props): ReactElement {
   const image = (
     <Imgix
       src={url}
-      sizes={`calc((var(--imgHeight)) * ${props.aspectRatio})`}
+      sizes={`calc((var(--imgSize)) * ${props.aspectRatio})`}
       htmlAttributes={{
         alt: props.description,
         loading: "lazy",
@@ -78,7 +83,12 @@ function Image(props: Props): ReactElement {
         transform: `scale(${0.9 + entry?.intersectionRatio / 10})`,
       }}
     >
-      <div className="pane__image">{onScreen ? image : null}</div>
+      <div className="pane__image">
+        {onScreen ? image : <Placeholder aspectRatio={props.aspectRatio} />}
+        <noscript>
+          <img src={url} alt={props.description} />
+        </noscript>
+      </div>
       <p className="image__info">
         {props.camera}, {`\u0192${props.fStop}, `}
         {speed} sec, {props.focalLength}, <span className="caps">ISO</span>{" "}

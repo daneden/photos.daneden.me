@@ -159,6 +159,20 @@ p {
   opacity: 1;
 }
 
+.placeholder {
+  --aspect-ratio: 1;
+  max-height: var(--imgSize);
+  height: var(--imgSize);
+  width: calc(var(--imgSize) * var(--aspect-ratio));
+}
+
+@media (orientation: portrait) {
+  .placeholder {
+    width: 100%;
+    height: calc(var(--imgSize) / var(--aspect-ratio));
+  }
+}
+
 .image__img.is-not-loaded {
   opacity: 0;
 }
