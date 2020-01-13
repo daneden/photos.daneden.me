@@ -73,11 +73,11 @@ p {
 }
 
 .frac {
-  font-feature-settings: "frac" 1;
+  font-variant-numeric: diagonal-fractions;
 }
 
 .caps {
-  font-feature-settings: "smcp" 1, "c2sc" 1;
+  font-variant-caps: all-small-caps;
 }
 
 .site-title {
