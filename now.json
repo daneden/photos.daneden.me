@@ -1,0 +1,9 @@
+{
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "headers": { "cache-control": "max-age=604800" },
+      "dest": "/static/$1"
+    }
+  ]
+}
