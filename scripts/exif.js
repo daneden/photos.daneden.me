@@ -71,11 +71,11 @@ let logData = exifData => {
   })
 
   // Write data to file for the app to consume
-  let writeString = `import { ImageData } from "./App"
+  let writeString = `import { ImageData } from "../components/App"
 const imageData: Array<ImageData> = ${JSON.stringify(fileInfo, null, " ")}
 export default imageData`
 
-  fs.writeFile("./src/manifest.ts", writeString, err => {
+  fs.writeFile("./data/manifest.ts", writeString, err => {
     if (err) return console.log(err)
   })
 }

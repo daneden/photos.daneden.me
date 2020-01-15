@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export default ({
   root = null,
@@ -13,7 +13,7 @@ export default ({
   const [node, setNode] = useState(null)
 
   const observer =
-    typeof window !== undefined && window.IntersectionObserver !== undefined
+    typeof window !== "undefined" && window.IntersectionObserver !== undefined
       ? useRef(
           new window.IntersectionObserver(([entry]) => updateEntry(entry), {
             root,
@@ -23,7 +23,7 @@ export default ({
         )
       : null
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const { current: currentObserver } = observer
     currentObserver.disconnect()
 

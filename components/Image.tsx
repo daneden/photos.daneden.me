@@ -1,7 +1,7 @@
 import * as React from "react"
 import { CSSProperties, ReactElement } from "react"
 import Imgix from "react-imgix"
-import useIntersect from "./useIntersection"
+import useIntersect from "../hooks/useIntersection"
 
 const { useEffect, useState } = React
 
@@ -15,6 +15,9 @@ type Props = {
   name: string
   speed: string
 }
+
+const IS_CLIENT = typeof window !== "undefined"
+const IS_DEV = process.env.NODE_ENV !== "production"
 
 const thresholdArray = Array.from(Array(10).keys(), i => i / 10)
 
@@ -30,6 +33,15 @@ function Image(props: Props): ReactElement {
     rootMargin: "24px",
     threshold: thresholdArray,
   })
+  const {
+    aspectRatio,
+    camera,
+    description,
+    fStop,
+    focalLength,
+    iso,
+    name,
+  } = props
 
   useEffect(() => {
     if (entry?.intersectionRatio > 0) {
@@ -37,32 +49,32 @@ function Image(props: Props): ReactElement {
     }
   }, [entry])
 
-  // Use local images for development
-  let url = `https://dephotos.imgix.net/${props.name}`
-  if (
-    process.env.PUBLIC_URL !== undefined &&
-    process.env.NODE_ENV &&
-    process.env.NODE_ENV.toUpperCase() === "DEVELOPMENT"
-  ) {
-    url = `${process.env.PUBLIC_URL || ""}/images/${props.name}`
-  }
+  const url = IS_DEV ? `/images/${name}` : `https://dephotos.imgix.net/${name}`
 
   const imgClass = [
     "image__img",
-    // Controls transition when the image is in view and loaded
-    imageLoaded && onScreen ? "is-loaded" : "is-not-loaded",
+    IS_CLIENT
+      ? imageLoaded && onScreen
+        ? "is-loaded"
+        : "is-not-loaded"
+      : "ssr",
   ].join(" ")
+
+  const ssrStyle = !IS_CLIENT
+    ? ({ "--aspect-ratio": aspectRatio } as CSSProperties)
+    : null
 
   const image = (
     <Imgix
       src={url}
-      sizes={`(orientation: portrait) calc(100vw - (1.5rem / 2)),
-        (orientation: landscape) calc(80vh * ${props.aspectRatio}),
+      sizes={`(orientation: portrait) calc(100vw - 1.5rem),
+        (orientation: landscape) calc(80vh * ${aspectRatio}),
         300px`}
       htmlAttributes={{
-        alt: props.description,
+        alt: description,
         loading: "lazy",
         onLoad: () => setImageLoaded(true),
+        style: ssrStyle,
       }}
       className={imgClass}
     />
@@ -80,22 +92,24 @@ function Image(props: Props): ReactElement {
     <div
       ref={ref}
       className="pane pane--image"
-      style={{
-        opacity: Math.max(entry?.intersectionRatio || 0, 0.1),
-        transform: `scale(${0.9 + entry?.intersectionRatio / 10})`,
-      }}
+      style={
+        IS_CLIENT
+          ? {
+              opacity: Math.max(entry?.intersectionRatio || 0, 0.1),
+              transform: `scale(${0.9 + entry?.intersectionRatio / 10})`,
+            }
+          : null
+      }
     >
       <div className="pane__image">
-        {onScreen && image}
-        {!imageLoaded ? <Placeholder aspectRatio={props.aspectRatio} /> : null}
-        <noscript>
-          <img alt={props.description} className={imgClass} src={url} />
-        </noscript>
+        {(onScreen || !IS_CLIENT) && image}
+        {!imageLoaded && IS_CLIENT ? (
+          <Placeholder aspectRatio={aspectRatio} />
+        ) : null}
       </div>
       <p className="image__info">
-        {props.camera}, {`\u0192${props.fStop}, `}
-        {speed} sec, {props.focalLength}, <span className="caps">ISO</span>{" "}
-        {props.iso}
+        {camera}, {`\u0192${fStop}, `}
+        {speed} sec, {focalLength}, <span className="caps">ISO</span> {iso}
       </p>
     </div>
   )

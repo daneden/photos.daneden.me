@@ -1,5 +1,6 @@
 import * as React from "react"
 import { ReactElement, ReactNode } from "react"
+import GlobalStyles from "./GlobalStyles"
 import Header from "./Header"
 import Image from "./Image"
 
@@ -22,6 +23,7 @@ type Props = {
 function Preface({ children }: { children: ReactNode }): ReactElement {
   return (
     <div className="pane pane--text">
+      <GlobalStyles />
       <Header />
       {children}
     </div>

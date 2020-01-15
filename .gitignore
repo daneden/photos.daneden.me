@@ -7,6 +7,7 @@ package-lock.json
 
 # production
 build
+.next
 
 # misc
 .DS_Store
@@ -15,4 +16,4 @@ yarn-error.log
 
 # ignore generated data
 package-lock.json
-src/manifest.js
+data/manifest.ts
