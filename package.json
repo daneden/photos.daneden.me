@@ -5,7 +5,7 @@
   "devDependencies": {
     "@types/node": "^13.1.8",
     "@types/react": "^16.9.17",
-    "@types/react-dom": "^16.9.4",
+    "@types/react-dom": "^16.9.5",
     "husky": "4.0.10",
     "lint-staged": "9.5.0",
     "prettier": "1.19.1",
