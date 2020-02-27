@@ -28,7 +28,7 @@
     "emotion": "^10.0.27",
     "next": "^9.2.2",
     "node-exiftool": "2.3.0",
-    "react": "16.12.0",
+    "react": "16.13.0",
     "react-dom": "16.13.0",
     "react-imgix": "9.0.1"
   },
