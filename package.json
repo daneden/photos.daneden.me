@@ -26,7 +26,7 @@
     "@emotion/core": "^10.0.28",
     "dist-exiftool": "10.53.0",
     "emotion": "^10.0.27",
-    "next": "^9.2.2",
+    "next": "^9.3.0",
     "node-exiftool": "2.3.0",
     "react": "16.13.0",
     "react-dom": "16.13.0",
