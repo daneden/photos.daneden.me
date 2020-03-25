@@ -1,8 +1,11 @@
+import fetch from "isomorphic-unfetch"
 import * as React from "react"
 import { CSSProperties, ReactElement } from "react"
 import Imgix from "react-imgix"
+import useSwr from "swr"
 import useIntersect from "../hooks/useIntersection"
 
+const IMGIX_URL = "https://dephotos.imgix.net/"
 const { useEffect, useState } = React
 
 type Props = {
@@ -43,13 +46,28 @@ function Image(props: Props): ReactElement {
     name,
   } = props
 
+  const { data, error } = useSwr(IMGIX_URL + name + "?palette=json", fetch)
+
   useEffect(() => {
-    if (entry?.intersectionRatio > 0) {
+    if (entry?.intersectionRatio > 0.1) {
       setOnScreen(true)
     }
-  }, [entry])
 
-  const url = IS_DEV ? `/images/${name}` : `https://dephotos.imgix.net/${name}`
+    if (entry?.intersectionRatio >= 0.9 && onScreen && !!data) {
+      data.json().then(palette => {
+        document.documentElement.style.setProperty(
+          "--background",
+          palette.dominant_colors.vibrant_dark.hex
+        )
+        document.documentElement.style.setProperty(
+          "--foreground",
+          palette.dominant_colors.vibrant_light.hex
+        )
+      })
+    }
+  }, [entry, onScreen, data])
+
+  const url = IS_DEV ? `/images/${name}` : `${IMGIX_URL}${name}`
 
   const imgClass = [
     "image__img",

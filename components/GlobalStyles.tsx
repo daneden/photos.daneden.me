@@ -7,16 +7,16 @@ export default () => (
       :root {
         --imgSize: 80vh;
         --baseline: 1.5rem;
-        --green: #11362e;
-        --peach: #c9a587;
-        --foreground: var(--green);
-        --background: var(--peach);
+        --darkGray: #222;
+        --lightGray: #aaa;
+        --foreground: var(--darkGray);
+        --background: var(--lightGray);
       }
 
       @media (prefers-color-scheme: dark) {
         :root {
-          --foreground: var(--peach);
-          --background: var(--green);
+          --foreground: var(--lightGray);
+          --background: var(--darkGray);
         }
       }
 
@@ -35,6 +35,8 @@ export default () => (
         font-weight: 500;
         height: 100%;
         overflow: hidden;
+        transition: 0.3s ease;
+        transition-property: color, background-color;
       }
 
       body {
@@ -153,6 +155,8 @@ export default () => (
       }
 
       .image__img {
+        border-radius: 4px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
         display: block;
         max-width: 100%;
         height: auto;

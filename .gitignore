@@ -17,3 +17,4 @@ yarn-error.log
 # ignore generated data
 package-lock.json
 data/manifest.ts
+.now
