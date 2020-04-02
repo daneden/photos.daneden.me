@@ -5692,10 +5692,10 @@ react-error-overlay@5.1.6:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.6.tgz#0cd73407c5d141f9638ae1e0c63e7b2bf7e9929d"
   integrity sha512-X1Y+0jR47ImDVr54Ab6V9eGk0Hnu7fVWGeHQSOXHf/C2pF9c6uy3gef8QUeuUiWlNb0i08InPSE5a/KJzNzw1Q==
 
-react-imgix@9.0.1:
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/react-imgix/-/react-imgix-9.0.1.tgz#cd98a88dbf63d74655587f1160c2e6c2a4e34d3e"
-  integrity sha512-XbuIRSE4lJa1UyEXChsPo/ta8C+Xn2uzwoC0cbiZNAYpHNit3ThFg0NtwpC6DYY9Iui1SAPku15dU6BoolADEg==
+react-imgix@9.0.2:
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/react-imgix/-/react-imgix-9.0.2.tgz#85cf6eddc68c144e5b07111a9219df7bbd9b96c6"
+  integrity sha512-8LQYRbbzb4MGZdJkflq75bevJHtN9/xlzoa+QfeCiLu31Ko5ovxje7wxiQdHyhI0JxIR8Z2GVnZT1qrvK3K8ZA==
   dependencies:
     js-base64 "^2.3.2"
     react-measure "^2.3.0"
