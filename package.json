@@ -30,7 +30,7 @@
     "node-exiftool": "2.3.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-imgix": "9.0.1",
+    "react-imgix": "9.0.2",
     "swr": "^0.2.0"
   },
   "scripts": {
