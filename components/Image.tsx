@@ -26,7 +26,9 @@ const thresholdArray = Array.from(Array(10).keys(), (i) => i / 10)
 
 const Placeholder = ({ aspectRatio }: { aspectRatio: number }) => {
   const style = { "--aspect-ratio": aspectRatio } as CSSProperties
-  return <div role="presentation" className="placeholder" style={style} />
+  return (
+    <div role="presentation" className="placeholder image__img" style={style} />
+  )
 }
 
 function Image(props: Props): ReactElement {
