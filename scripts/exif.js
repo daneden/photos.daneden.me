@@ -5,20 +5,20 @@ const exiftoolBin = require("dist-exiftool")
 const ep = new exiftool.ExiftoolProcess(exiftoolBin)
 
 const CAMERAS = {
-  SONY: "Sony α6000",
+  SONY: "Sony a6000",
   "LEICA CAMERA AG": "Leica Q",
 }
 
 ep.open()
-  .then(pid => {
+  .then((pid) => {
     console.log("🏁  Started exiftool process %s", pid)
     console.log("📸  Extracting photo metadata...", pid)
     return ep
       .readMetadata("./public/images/")
-      .then(res => {
+      .then((res) => {
         logData(res)
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Error: ", error)
       })
   })
@@ -27,21 +27,21 @@ ep.open()
       console.log("✅  Metadata extracted! Closing exiftool.")
     })
   })
-  .catch(error => {
+  .catch((error) => {
     console.error("🚨  Error extracting photo metadata!", error)
   })
 
-let logData = exifData => {
+let logData = (exifData) => {
   let fileInfo = []
 
   // Transform the data to remove all but the info we care about
-  exifData.data.forEach(datum => {
+  exifData.data.forEach((datum) => {
     // The aspect ratio here is actually in terms of
     // height:width (instead of typical width:height)
     // since they all have a fixed height relative to the
     // viewport
     const aspectRatio = datum.ImageSize.split("x")
-      .map(n => parseInt(n))
+      .map((n) => parseInt(n))
       .reduce((w, h) => w / h)
 
     const info = {
@@ -75,7 +75,7 @@ let logData = exifData => {
 const imageData: Array<ImageData> = ${JSON.stringify(fileInfo, null, " ")}
 export default imageData`
 
-  fs.writeFile("./data/manifest.ts", writeString, err => {
+  fs.writeFile("./data/manifest.ts", writeString, (err) => {
     if (err) return console.log(err)
   })
 }

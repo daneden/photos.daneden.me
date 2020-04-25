@@ -33,7 +33,7 @@ function Image(props: Props): ReactElement {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [onScreen, setOnScreen] = useState(false)
   const [ref, entry] = useIntersect({
-    rootMargin: "24px",
+    rootMargin: "-10%",
     threshold: thresholdArray,
   })
   const {
@@ -46,7 +46,7 @@ function Image(props: Props): ReactElement {
     name,
   } = props
 
-  const { data, error } = useSwr(IMGIX_URL + name + "?palette=json", fetch)
+  const { data } = useSwr(IMGIX_URL + name + "?palette=json", fetch)
 
   useEffect(() => {
     if (entry?.intersectionRatio > 0.1) {
@@ -54,16 +54,19 @@ function Image(props: Props): ReactElement {
     }
 
     if (entry?.intersectionRatio >= 0.9 && onScreen && !!data) {
-      data.json().then(palette => {
-        document.documentElement.style.setProperty(
-          "--background",
-          palette.dominant_colors.vibrant_dark.hex
-        )
-        document.documentElement.style.setProperty(
-          "--foreground",
-          palette.dominant_colors.vibrant_light.hex
-        )
-      })
+      data
+        .clone()
+        .json()
+        .then(palette => {
+          document.documentElement.style.setProperty(
+            "--background",
+            palette.dominant_colors.vibrant_dark?.hex ?? "var(--darkGray)"
+          )
+          document.documentElement.style.setProperty(
+            "--foreground",
+            palette.dominant_colors.vibrant_light?.hex ?? "var(--lightGray)"
+          )
+        })
     }
   }, [entry, onScreen, data])
 

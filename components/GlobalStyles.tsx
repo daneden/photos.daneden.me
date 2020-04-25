@@ -1,11 +1,22 @@
 import { css, Global } from "@emotion/core"
 import React from "react"
+import DrukTextWideWoff from "../fonts/DrukTextWide-Medium-Web.woff"
+import DrukTextWideWoff2 from "../fonts/DrukTextWide-Medium-Web.woff2"
 
 export default () => (
   <Global
     styles={css`
+      @font-face {
+        font-family: "Druk Text Wide Web";
+        src: url(${DrukTextWideWoff2}) format("woff2"),
+          url(${DrukTextWideWoff}) format("woff");
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+      }
+
       :root {
-        --imgSize: 80vh;
+        --imgSize: 85vh;
         --baseline: 1.5rem;
         --darkGray: #222;
         --lightGray: #aaa;
@@ -31,7 +42,7 @@ export default () => (
         -webkit-text-size-adjust: none;
         background-color: var(--background);
         color: var(--foreground);
-        font: 100%/1.5 "Work Sans", sans-serif;
+        font: 87.5%/1.5 "Druk Text Wide Web", sans-serif;
         font-weight: 500;
         height: 100%;
         overflow: hidden;
@@ -57,12 +68,6 @@ export default () => (
         }
       }
 
-      @media (max-width: 40rem) {
-        html {
-          font-size: 87.5%;
-        }
-      }
-
       a {
         color: inherit;
         text-decoration-color: rgba(255, 255, 255, 0.5);
@@ -84,13 +89,10 @@ export default () => (
         font-variant-numeric: diagonal-fractions;
       }
 
-      .caps {
-        font-variant-caps: all-small-caps;
-      }
-
       .site-title {
         font-weight: inherit;
         font-size: 1rem;
+        text-transform: uppercase;
       }
 
       #__next {
@@ -162,6 +164,7 @@ export default () => (
         height: auto;
         flex: 0 0 100%;
         object-fit: cover;
+        object-position: center center;
         max-height: var(--imgSize);
 
         transition: 0.3s ease opacity;
