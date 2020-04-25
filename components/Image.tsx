@@ -22,7 +22,7 @@ type Props = {
 const IS_CLIENT = typeof window !== "undefined"
 const IS_DEV = process.env.NODE_ENV !== "production"
 
-const thresholdArray = Array.from(Array(10).keys(), i => i / 10)
+const thresholdArray = Array.from(Array(10).keys(), (i) => i / 10)
 
 const Placeholder = ({ aspectRatio }: { aspectRatio: number }) => {
   const style = { "--aspect-ratio": aspectRatio } as CSSProperties
@@ -33,7 +33,7 @@ function Image(props: Props): ReactElement {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [onScreen, setOnScreen] = useState(false)
   const [ref, entry] = useIntersect({
-    rootMargin: "-10%",
+    rootMargin: "-5%",
     threshold: thresholdArray,
   })
   const {
@@ -57,7 +57,7 @@ function Image(props: Props): ReactElement {
       data
         .clone()
         .json()
-        .then(palette => {
+        .then((palette) => {
           document.documentElement.style.setProperty(
             "--background",
             palette.dominant_colors.vibrant_dark?.hex ?? "var(--darkGray)"
