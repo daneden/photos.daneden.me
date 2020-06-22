@@ -4301,10 +4301,10 @@ neo-async@2.6.1, neo-async@^2.5.0, neo-async@^2.6.1:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
-next-fonts@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/next-fonts/-/next-fonts-1.1.0.tgz#5981ad5b8db4c6ae101919e2252e8dd2ec5b387a"
-  integrity sha512-Fbo2EROr4Y2T4lfHaHg5LkVse2OmHQIYLptdnnX43YLvOsE2btlarv+zFp6ex45znrVnwNxcAsdYH4N4jGzfeQ==
+next-fonts@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/next-fonts/-/next-fonts-1.2.0.tgz#1ad1241c6d20f9aa84b505ccefacd4da76adb545"
+  integrity sha512-k1rQmd1yyHrZVvqWeLD2xut+Krqr6BorZrF9ETbfhXb/GkTr8WLpg8rEE54ktjIs7yzqcgl3GkADonR9HGcglQ==
   dependencies:
     file-loader "^2.0.0"
     url-loader "^1.1.1"
