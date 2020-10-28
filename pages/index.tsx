@@ -9,9 +9,9 @@ const images = imageData.slice().reverse()
 function HomePage() {
   useEffect(() => {
     let content: HTMLElement = document.body
-    window.addEventListener("mousewheel", MouseWheelHandler)
+    window.addEventListener("mousewheel", scrollHandler)
 
-    function MouseWheelHandler(e) {
+    function scrollHandler(e) {
       if (content === undefined) {
         content = document.body
       } else {
@@ -20,7 +20,7 @@ function HomePage() {
     }
 
     return () => {
-      window.removeEventListener("mousewheel", MouseWheelHandler)
+      window.removeEventListener("mousewheel", scrollHandler)
     }
   })
 
@@ -38,17 +38,11 @@ function HomePage() {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://dephotos.imgix.net/00013.jpg?auto=format&dpr=2&fm=pjpg&crop=faces&fit=max&w=1&h=900"
+          content="https://photos.daneden.me/images/00013.jpg"
         />
         <meta property="og:description" content={siteInfo.description} />
-
-        <link rel="preconnect" href="https://dephotos.imgix.net" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          href="https://fonts.googleapis.com/css?family=Work+Sans:500&display=swap&subset=latin-ext"
-          rel="stylesheet"
-        />
       </Head>
+
       <App preface={siteInfo.fullDescription} images={images} />
     </>
   )

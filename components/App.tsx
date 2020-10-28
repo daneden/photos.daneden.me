@@ -13,6 +13,13 @@ export type ImageData = {
   fStop: number
   iso: number
   shutterSpeed: string
+  width: number
+  height: number
+  colors: {
+    vibrant: string,
+    darkVibrant: string,
+    lightVibrant: string,
+  }
 }
 
 type Props = {
@@ -45,6 +52,9 @@ function App(props: Props): ReactElement {
           name={img.fileName}
           speed={img.shutterSpeed}
           description={img.description}
+          colors={img.colors}
+          width={img.width}
+          height={img.height}
         />
       ))}
     </main>

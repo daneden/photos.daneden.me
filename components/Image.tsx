@@ -1,11 +1,8 @@
-import fetch from "isomorphic-unfetch"
 import * as React from "react"
 import { CSSProperties, ReactElement } from "react"
-import Imgix from "react-imgix"
-import useSwr from "swr"
+import NextImage from "next/image"
 import useIntersect from "../hooks/useIntersection"
 
-const IMGIX_URL = "https://dephotos.imgix.net/"
 const { useEffect, useState } = React
 
 type Props = {
@@ -17,10 +14,16 @@ type Props = {
   iso: number
   name: string
   speed: string
+  colors: {
+    vibrant: string
+    darkVibrant: string
+    lightVibrant: string
+  }
+  width: number
+  height: number
 }
 
 const IS_CLIENT = typeof window !== "undefined"
-const IS_DEV = process.env.NODE_ENV !== "production"
 
 const thresholdArray = Array.from(Array(10).keys(), (i) => i / 10)
 
@@ -46,60 +49,38 @@ function Image(props: Props): ReactElement {
     focalLength,
     iso,
     name,
+    width,
+    height,
+    colors
   } = props
-
-  const { data } = useSwr(IMGIX_URL + name + "?palette=json", fetch)
 
   useEffect(() => {
     if (entry?.intersectionRatio > 0.1) {
       setOnScreen(true)
     }
 
-    if (entry?.intersectionRatio >= 0.9 && onScreen && !!data) {
-      data
-        .clone()
-        .json()
-        .then((palette) => {
-          document.documentElement.style.setProperty(
-            "--background",
-            palette.dominant_colors.vibrant_dark?.hex ?? "var(--darkGray)"
-          )
-          document.documentElement.style.setProperty(
-            "--foreground",
-            palette.dominant_colors.vibrant_light?.hex ?? "var(--lightGray)"
-          )
-        })
+    if (entry?.intersectionRatio >= 0.9 && onScreen) {
+      document.documentElement.style.setProperty(
+        "--background",
+        colors.darkVibrant ?? "var(--darkGray)"
+      )
+      document.documentElement.style.setProperty(
+        "--foreground",
+        colors.lightVibrant ?? "var(--lightGray)"
+      )
     }
-  }, [entry, onScreen, data])
+  }, [entry, onScreen])
 
-  const url = IS_DEV ? `/images/${name}` : `${IMGIX_URL}${name}`
-
-  const imgClass = [
-    "image__img",
-    IS_CLIENT
-      ? imageLoaded && onScreen
-        ? "is-loaded"
-        : "is-not-loaded"
-      : "ssr",
-  ].join(" ")
-
-  const ssrStyle = !IS_CLIENT
-    ? ({ "--aspect-ratio": aspectRatio } as CSSProperties)
-    : null
+  const url = `/images/${name}`
 
   const image = (
-    <Imgix
+    <NextImage
       src={url}
-      sizes={`(orientation: portrait) calc(100vw - 1.5rem),
-        (orientation: landscape) calc(80vh * ${aspectRatio}),
-        300px`}
-      htmlAttributes={{
-        alt: description,
-        loading: "lazy",
-        onLoad: () => setImageLoaded(true),
-        style: ssrStyle,
-      }}
-      className={imgClass}
+      alt={description}
+      onLoad={() => setImageLoaded(true)}
+      unsized={true}
+      priority={true}
+      className={"image__img"}
     />
   )
 
@@ -125,10 +106,7 @@ function Image(props: Props): ReactElement {
       }
     >
       <div className="pane__image">
-        {(onScreen || !IS_CLIENT) && image}
-        {!imageLoaded && IS_CLIENT ? (
-          <Placeholder aspectRatio={aspectRatio} />
-        ) : null}
+        {image}
       </div>
       <p className="image__info">
         {camera}, {`\u0192${fStop}, `}

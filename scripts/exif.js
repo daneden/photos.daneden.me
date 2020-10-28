@@ -3,6 +3,8 @@ const fs = require("fs")
 const exiftool = require("node-exiftool")
 const exiftoolBin = require("dist-exiftool")
 const ep = new exiftool.ExiftoolProcess(exiftoolBin)
+const Vibrant = require("node-vibrant")
+const path = require("path")
 
 const CAMERAS = {
   SONY: "Sony a6000",
@@ -15,8 +17,8 @@ ep.open()
     console.log("📸  Extracting photo metadata...", pid)
     return ep
       .readMetadata("./public/images/")
-      .then((res) => {
-        logData(res)
+      .then(async (res) => {
+        await logData(res)
       })
       .catch((error) => {
         console.log("Error: ", error)
@@ -31,18 +33,46 @@ ep.open()
     console.error("🚨  Error extracting photo metadata!", error)
   })
 
-let logData = (exifData) => {
+let logData = async (exifData) => {
   let fileInfo = []
 
+  const promises = exifData.data.map(async (datum) => {
+    const filePath = path.join(
+      process.cwd(),
+      "public",
+      "images",
+      datum.FileName
+    )
+    const vb = new Vibrant(filePath, { maxDimension: 12 })
+    return vb
+      .getPalette()
+      .then((palette) => {
+        return {
+          name: datum.FileName,
+          vibrant: palette.Vibrant.hex,
+          darkVibrant: palette.DarkVibrant.hex,
+          lightVibrant: palette.LightVibrant.hex,
+        }
+      })
+      .catch((e) => console.error(e))
+  })
+
+  const colors = await Promise.all(promises)
+
   // Transform the data to remove all but the info we care about
-  exifData.data.forEach((datum) => {
+  exifData.data.forEach(async (datum) => {
     // The aspect ratio here is actually in terms of
     // height:width (instead of typical width:height)
     // since they all have a fixed height relative to the
     // viewport
-    const aspectRatio = datum.ImageSize.split("x")
-      .map((n) => parseInt(n))
-      .reduce((w, h) => w / h)
+    const [width, height] = datum.ImageSize.split("x").map((n) => parseInt(n))
+    const aspectRatio = [width, height].reduce((w, h) => w / h)
+
+    const colorPalette = colors.find((entry) => {
+      return entry.name === datum.FileName
+    })
+
+    delete colorPalette.name
 
     const info = {
       aspectRatio,
@@ -56,6 +86,9 @@ let logData = (exifData) => {
       iso: datum.ISO,
       shutterSpeed: String(datum.ShutterSpeed),
       description: datum.Description || "",
+      width,
+      height,
+      colors: colorPalette,
     }
 
     fileInfo.push(info)
