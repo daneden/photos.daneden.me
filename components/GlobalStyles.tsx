@@ -5,7 +5,7 @@ export default function GlobalStyles() {
     <style jsx global>
       {`
         :root {
-          --imgSize: 90vh;
+          --imgSize: 85vh;
           --baseline: 1.5rem;
           --darkGray: #222;
           --lightGray: #aaa;
@@ -31,8 +31,7 @@ export default function GlobalStyles() {
           -webkit-text-size-adjust: none;
           background-color: var(--background);
           color: var(--foreground);
-          font: 100%/1.5 system-ui, -apple-system, BlinkMacSystemFont,
-            sans-serif;
+          font: 90%/1.5 system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
           font-weight: 500;
           height: 100%;
           overflow: hidden;
@@ -95,6 +94,7 @@ export default function GlobalStyles() {
           display: grid;
           max-height: var(--imgSize);
           grid-auto-flow: column;
+          align-items: stretch;
         }
 
         .pane {

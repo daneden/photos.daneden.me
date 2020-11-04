@@ -1,5 +1,5 @@
 import * as React from "react"
-import { CSSProperties, ReactElement } from "react"
+import { ReactElement } from "react"
 import NextImage from "next/image"
 import useIntersect from "../hooks/useIntersection"
 
@@ -23,24 +23,16 @@ type Props = {
   height: number
 }
 
-const IS_CLIENT = typeof window !== "undefined"
-
 const thresholdArray = Array.from(Array(10).keys(), (i) => i / 10)
 
-const Placeholder = ({ aspectRatio }: { aspectRatio: number }) => {
-  const style = { "--aspect-ratio": aspectRatio } as CSSProperties
-  return (
-    <div role="presentation" className="placeholder image__img" style={style} />
-  )
-}
-
-function Image(props: Props): ReactElement {
+function Image(props: Props) {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [onScreen, setOnScreen] = useState(false)
   const [ref, entry] = useIntersect({
     rootMargin: "-5%",
     threshold: thresholdArray,
   })
+
   const {
     aspectRatio,
     camera,
@@ -57,6 +49,8 @@ function Image(props: Props): ReactElement {
   useEffect(() => {
     if (entry?.intersectionRatio > 0.1) {
       setOnScreen(true)
+    } else {
+      setOnScreen(false)
     }
 
     if (entry?.intersectionRatio >= 0.9 && onScreen) {
@@ -76,7 +70,7 @@ function Image(props: Props): ReactElement {
   const image = (
     <NextImage
       alt={description}
-      className="image"
+      className={`image ${imageLoaded ? "loaded" : "not-loaded"}`}
       height={height}
       layout="responsive"
       onLoad={() => setImageLoaded(true)}
@@ -95,18 +89,7 @@ function Image(props: Props): ReactElement {
 
   return (
     <>
-      <div
-        ref={ref}
-        className="pane"
-        style={{
-          ...(IS_CLIENT
-            ? {
-                opacity: Math.max(entry?.intersectionRatio || 0, 0.1),
-                transform: `scale(${0.9 + entry?.intersectionRatio / 10})`,
-              }
-            : {}),
-        }}
-      >
+      <div ref={ref} className="pane">
         <div className="image-container">{image}</div>
         <p>
           {camera}, {`\u0192${fStop}, `}
@@ -114,14 +97,24 @@ function Image(props: Props): ReactElement {
         </p>
       </div>
       <style jsx>{`
+        .image-container {
+          opacity: ${onScreen ? 1 : 0.4};
+          transition: 0.3s ease;
+          transition-property: opacity;
+        }
+      `}</style>
+      <style jsx>{`
         .pane {
           --aspect-ratio: ${aspectRatio};
           display: flex;
           flex: 1 1 100%;
-          height: var(--imgSize);
-          width: calc(var(--imgSize) * var(--aspect-ratio));
           transition: 0.5s ease;
           transition-property: transform, opacity;
+        }
+
+        .image-container {
+          height: var(--imgSize);
+          width: calc(var(--imgSize) * var(--aspect-ratio));
         }
 
         .pane :global(.image) {
@@ -132,6 +125,8 @@ function Image(props: Props): ReactElement {
           object-position: center;
           transition: 0.3s ease opacity;
           opacity: 1;
+          background-color: rgba(0, 0, 0, 0.15);
+          height: var(--imgSize);
         }
 
         @media (orientation: portrait) {
