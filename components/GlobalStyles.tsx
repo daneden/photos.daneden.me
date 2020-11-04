@@ -109,19 +109,19 @@ export default function GlobalStyles() {
         @media (orientation: portrait) {
           .site-root {
             flex-flow: column wrap;
-            max-width: 100%;
             max-height: unset;
           }
 
           .site-content {
             grid-auto-flow: row;
-            grid-auto-row: min-content;
+            width: 100px;
           }
 
           .pane {
             height: auto;
             width: auto;
-            margin: auto;
+            margin: 0;
+            max-width: 100vw;
           }
         }
 
@@ -134,6 +134,7 @@ export default function GlobalStyles() {
         @media (orientation: portrait) {
           .pane--text {
             flex-basis: auto;
+            width: 100vw;
           }
         }
 

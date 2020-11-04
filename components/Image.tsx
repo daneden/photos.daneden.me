@@ -134,6 +134,11 @@ function Image(props: Props) {
             height: auto;
             width: auto;
           }
+
+          .image-container {
+            width: 100%;
+            height: auto;
+          }
         }
       `}</style>
     </>
