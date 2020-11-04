@@ -11,29 +11,7 @@ const CAMERAS = {
   "LEICA CAMERA AG": "Leica Q",
 }
 
-ep.open()
-  .then((pid) => {
-    console.log("🏁  Started exiftool process %s", pid)
-    console.log("📸  Extracting photo metadata...", pid)
-    return ep
-      .readMetadata("./public/images/")
-      .then(async (res) => {
-        await logData(res)
-      })
-      .catch((error) => {
-        console.log("Error: ", error)
-      })
-  })
-  .then(() => {
-    return ep.close().then(() => {
-      console.log("✅  Metadata extracted! Closing exiftool.")
-    })
-  })
-  .catch((error) => {
-    console.error("🚨  Error extracting photo metadata!", error)
-  })
-
-let logData = async (exifData) => {
+async function createManifestFromExifData(exifData) {
   let fileInfo = []
 
   const promises = exifData.data.map(async (datum) => {
@@ -112,3 +90,25 @@ export default imageData`
     if (err) return console.log(err)
   })
 }
+
+ep.open()
+  .then((pid) => {
+    console.log(`🏁  Started exiftool process (PID: ${pid})`)
+    console.log("📸  Extracting photo metadata...")
+    return ep
+      .readMetadata("./public/images/")
+      .then(async (res) => {
+        await createManifestFromExifData(res)
+      })
+      .catch((error) => {
+        console.log("Error: ", error)
+      })
+  })
+  .then(() => {
+    return ep.close().then(() => {
+      console.log("✅  Metadata extracted! Closing exiftool.")
+    })
+  })
+  .catch((error) => {
+    console.error("🚨  Error extracting photo metadata!", error)
+  })

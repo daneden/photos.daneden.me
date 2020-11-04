@@ -78,7 +78,7 @@ function Image(props: Props): ReactElement {
       alt={description}
       className="image"
       height={height}
-      layout="intrinsic"
+      layout="responsive"
       onLoad={() => setImageLoaded(true)}
       src={url}
       width={width}
