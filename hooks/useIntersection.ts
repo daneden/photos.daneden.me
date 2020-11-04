@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
-export default ({
+export default function useIntersection({
   root = null,
   rootMargin,
   threshold = 0,
@@ -8,7 +8,7 @@ export default ({
   root?: Element
   rootMargin?: string
   threshold: number | number[]
-}) => {
+}) {
   const [entry, updateEntry] = useState(null)
   const [node, setNode] = useState(null)
 

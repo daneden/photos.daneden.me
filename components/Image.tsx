@@ -1,11 +1,8 @@
-import fetch from "isomorphic-unfetch"
 import * as React from "react"
-import { CSSProperties, ReactElement } from "react"
-import Imgix from "react-imgix"
-import useSwr from "swr"
+import { ReactElement } from "react"
+import NextImage from "next/image"
 import useIntersect from "../hooks/useIntersection"
 
-const IMGIX_URL = "https://dephotos.imgix.net/"
 const { useEffect, useState } = React
 
 type Props = {
@@ -17,27 +14,25 @@ type Props = {
   iso: number
   name: string
   speed: string
+  colors: {
+    vibrant: string
+    darkVibrant: string
+    lightVibrant: string
+  }
+  width: number
+  height: number
 }
-
-const IS_CLIENT = typeof window !== "undefined"
-const IS_DEV = process.env.NODE_ENV !== "production"
 
 const thresholdArray = Array.from(Array(10).keys(), (i) => i / 10)
 
-const Placeholder = ({ aspectRatio }: { aspectRatio: number }) => {
-  const style = { "--aspect-ratio": aspectRatio } as CSSProperties
-  return (
-    <div role="presentation" className="placeholder image__img" style={style} />
-  )
-}
-
-function Image(props: Props): ReactElement {
+function Image(props: Props) {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [onScreen, setOnScreen] = useState(false)
   const [ref, entry] = useIntersect({
     rootMargin: "-5%",
     threshold: thresholdArray,
   })
+
   const {
     aspectRatio,
     camera,
@@ -46,60 +41,41 @@ function Image(props: Props): ReactElement {
     focalLength,
     iso,
     name,
+    width,
+    height,
+    colors,
   } = props
-
-  const { data } = useSwr(IMGIX_URL + name + "?palette=json", fetch)
 
   useEffect(() => {
     if (entry?.intersectionRatio > 0.1) {
       setOnScreen(true)
+    } else {
+      setOnScreen(false)
     }
 
-    if (entry?.intersectionRatio >= 0.9 && onScreen && !!data) {
-      data
-        .clone()
-        .json()
-        .then((palette) => {
-          document.documentElement.style.setProperty(
-            "--background",
-            palette.dominant_colors.vibrant_dark?.hex ?? "var(--darkGray)"
-          )
-          document.documentElement.style.setProperty(
-            "--foreground",
-            palette.dominant_colors.vibrant_light?.hex ?? "var(--lightGray)"
-          )
-        })
+    if (entry?.intersectionRatio >= 0.9 && onScreen) {
+      document.documentElement.style.setProperty(
+        "--background",
+        colors.darkVibrant ?? "var(--darkGray)"
+      )
+      document.documentElement.style.setProperty(
+        "--foreground",
+        colors.lightVibrant ?? "var(--lightGray)"
+      )
     }
-  }, [entry, onScreen, data])
+  }, [entry, onScreen])
 
-  const url = IS_DEV ? `/images/${name}` : `${IMGIX_URL}${name}`
-
-  const imgClass = [
-    "image__img",
-    IS_CLIENT
-      ? imageLoaded && onScreen
-        ? "is-loaded"
-        : "is-not-loaded"
-      : "ssr",
-  ].join(" ")
-
-  const ssrStyle = !IS_CLIENT
-    ? ({ "--aspect-ratio": aspectRatio } as CSSProperties)
-    : null
+  const url = `/images/${name}`
 
   const image = (
-    <Imgix
+    <NextImage
+      alt={description}
+      className={`image ${imageLoaded ? "loaded" : "not-loaded"}`}
+      height={height}
+      layout="responsive"
+      onLoad={() => setImageLoaded(true)}
       src={url}
-      sizes={`(orientation: portrait) calc(100vw - 1.5rem),
-        (orientation: landscape) calc(80vh * ${aspectRatio}),
-        300px`}
-      htmlAttributes={{
-        alt: description,
-        loading: "lazy",
-        onLoad: () => setImageLoaded(true),
-        style: ssrStyle,
-      }}
-      className={imgClass}
+      width={width}
     />
   )
 
@@ -112,29 +88,60 @@ function Image(props: Props): ReactElement {
     )
 
   return (
-    <div
-      ref={ref}
-      className="pane pane--image"
-      style={
-        IS_CLIENT
-          ? {
-              opacity: Math.max(entry?.intersectionRatio || 0, 0.1),
-              transform: `scale(${0.9 + entry?.intersectionRatio / 10})`,
-            }
-          : null
-      }
-    >
-      <div className="pane__image">
-        {(onScreen || !IS_CLIENT) && image}
-        {!imageLoaded && IS_CLIENT ? (
-          <Placeholder aspectRatio={aspectRatio} />
-        ) : null}
+    <>
+      <div ref={ref} className="pane">
+        <div className="image-container">{image}</div>
+        <p>
+          {camera}, {`\u0192${fStop}, `}
+          {speed} sec, {focalLength}, <span className="caps">ISO</span> {iso}
+        </p>
       </div>
-      <p className="image__info">
-        {camera}, {`\u0192${fStop}, `}
-        {speed} sec, {focalLength}, <span className="caps">ISO</span> {iso}
-      </p>
-    </div>
+      <style jsx>{`
+        .image-container {
+          opacity: ${onScreen ? 1 : 0.4};
+          transition: 0.3s ease;
+          transition-property: opacity;
+        }
+      `}</style>
+      <style jsx>{`
+        .pane {
+          --aspect-ratio: ${aspectRatio};
+          display: flex;
+          flex: 1 1 100%;
+          transition: 0.5s ease;
+          transition-property: transform, opacity;
+        }
+
+        .image-container {
+          height: var(--imgSize);
+          width: calc(var(--imgSize) * var(--aspect-ratio));
+        }
+
+        .pane :global(.image) {
+          border-radius: 4px;
+          display: block;
+          flex: 0 0 100%;
+          object-fit: cover;
+          object-position: center;
+          transition: 0.3s ease opacity;
+          opacity: 1;
+          background-color: rgba(0, 0, 0, 0.15);
+          height: var(--imgSize);
+        }
+
+        @media (orientation: portrait) {
+          .pane {
+            height: auto;
+            width: auto;
+          }
+
+          .image-container {
+            width: 100%;
+            height: auto;
+          }
+        }
+      `}</style>
+    </>
   )
 }
 
