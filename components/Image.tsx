@@ -51,7 +51,7 @@ function Image(props: Props): ReactElement {
     name,
     width,
     height,
-    colors
+    colors,
   } = props
 
   useEffect(() => {
@@ -75,12 +75,13 @@ function Image(props: Props): ReactElement {
 
   const image = (
     <NextImage
-      src={url}
       alt={description}
+      className="image"
+      height={height}
+      layout="intrinsic"
       onLoad={() => setImageLoaded(true)}
-      unsized={true}
-      priority={true}
-      className={"image__img"}
+      src={url}
+      width={width}
     />
   )
 
@@ -93,26 +94,54 @@ function Image(props: Props): ReactElement {
     )
 
   return (
-    <div
-      ref={ref}
-      className="pane pane--image"
-      style={
-        IS_CLIENT
-          ? {
-              opacity: Math.max(entry?.intersectionRatio || 0, 0.1),
-              transform: `scale(${0.9 + entry?.intersectionRatio / 10})`,
-            }
-          : null
-      }
-    >
-      <div className="pane__image">
-        {image}
+    <>
+      <div
+        ref={ref}
+        className="pane"
+        style={{
+          ...(IS_CLIENT
+            ? {
+                opacity: Math.max(entry?.intersectionRatio || 0, 0.1),
+                transform: `scale(${0.9 + entry?.intersectionRatio / 10})`,
+              }
+            : {}),
+        }}
+      >
+        <div className="image-container">{image}</div>
+        <p>
+          {camera}, {`\u0192${fStop}, `}
+          {speed} sec, {focalLength}, <span className="caps">ISO</span> {iso}
+        </p>
       </div>
-      <p className="image__info">
-        {camera}, {`\u0192${fStop}, `}
-        {speed} sec, {focalLength}, <span className="caps">ISO</span> {iso}
-      </p>
-    </div>
+      <style jsx>{`
+        .pane {
+          --aspect-ratio: ${aspectRatio};
+          display: flex;
+          flex: 1 1 100%;
+          height: var(--imgSize);
+          width: calc(var(--imgSize) * var(--aspect-ratio));
+          transition: 0.5s ease;
+          transition-property: transform, opacity;
+        }
+
+        .pane :global(.image) {
+          border-radius: 4px;
+          display: block;
+          flex: 0 0 100%;
+          object-fit: cover;
+          object-position: center;
+          transition: 0.3s ease opacity;
+          opacity: 1;
+        }
+
+        @media (orientation: portrait) {
+          .pane {
+            height: auto;
+            width: auto;
+          }
+        }
+      `}</style>
+    </>
   )
 }
 

@@ -16,6 +16,7 @@ function HomePage() {
         content = document.body
       } else {
         content.scrollLeft += e.deltaY
+        content.setAttribute("style", `--scroll-delta: ${content.scrollLeft}`)
       }
     }
 

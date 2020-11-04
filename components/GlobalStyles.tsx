@@ -1,21 +1,11 @@
 import React from "react"
-import DrukTextWideWoff from "../fonts/DrukTextWide-Medium-Web.woff"
-import DrukTextWideWoff2 from "../fonts/DrukTextWide-Medium-Web.woff2"
 
 export default function GlobalStyles() {
   return (
-    <style jsx global>{`
-        @font-face {
-          font-family: "Druk Text Wide Web";
-          src: url(${DrukTextWideWoff2}) format("woff2"),
-            url(${DrukTextWideWoff}) format("woff");
-          font-weight: 500;
-          font-style: normal;
-          font-stretch: normal;
-        }
-
+    <style jsx global>
+      {`
         :root {
-          --imgSize: 85vh;
+          --imgSize: 90vh;
           --baseline: 1.5rem;
           --darkGray: #222;
           --lightGray: #aaa;
@@ -41,7 +31,8 @@ export default function GlobalStyles() {
           -webkit-text-size-adjust: none;
           background-color: var(--background);
           color: var(--foreground);
-          font: 87.5%/1.5 "Druk Text Wide Web", sans-serif;
+          font: 100%/1.5 system-ui, -apple-system, BlinkMacSystemFont,
+            sans-serif;
           font-weight: 500;
           height: 100%;
           overflow: hidden;
@@ -89,15 +80,14 @@ export default function GlobalStyles() {
         }
 
         .site-title {
-          font-weight: inherit;
+          font-weight: 600;
           font-size: 1rem;
-          text-transform: uppercase;
         }
 
         #__next {
           display: flex;
           flex-flow: column nowrap;
-          padding-bottom: calc(var(--baseline) * 2);
+          padding-bottom: var(--baseline);
         }
 
         .site-content {
@@ -124,7 +114,8 @@ export default function GlobalStyles() {
           }
 
           .site-content {
-            flex-direction: column;
+            grid-auto-flow: row;
+            grid-auto-row: min-content;
           }
 
           .pane {
@@ -140,40 +131,10 @@ export default function GlobalStyles() {
           max-width: 100%;
         }
 
-        .pane--image {
-          transition: 0.5s ease;
-          transition-property: transform, opacity;
-        }
-
         @media (orientation: portrait) {
           .pane--text {
             flex-basis: auto;
           }
-        }
-
-        .pane__image {
-          display: flex;
-          flex: 1 1 100%;
-          margin-bottom: calc(var(--baseline) / 2);
-        }
-
-        .image__img {
-          border-radius: 4px;
-          box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
-          display: block;
-          width: auto;
-          flex: 0 0 100%;
-          object-fit: cover;
-          object-position: center center;
-          height: var(--imgSize);
-
-          transition: 0.3s ease opacity;
-          opacity: 1;
-        }
-
-        .image__img.is-not-loaded {
-          height: 0;
-          position: absolute;
         }
 
         .placeholder,
@@ -192,10 +153,6 @@ export default function GlobalStyles() {
             width: var(--width);
             height: calc(var(--width) / var(--aspect-ratio));
           }
-        }
-
-        .image__img.is-not-loaded {
-          opacity: 0;
         }
       `}
     </style>
