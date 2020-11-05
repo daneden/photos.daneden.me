@@ -30,7 +30,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-imgix": "9.0.2",
-    "swr": "^0.3.6"
+    "swr": "^0.3.8"
   },
   "scripts": {
     "prestart": "node ./scripts/exif.js",
