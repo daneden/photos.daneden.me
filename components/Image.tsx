@@ -47,7 +47,7 @@ function Image(props: Props) {
   } = props
 
   useEffect(() => {
-    if (entry?.intersectionRatio > 0.1) {
+    if (entry?.intersectionRatio > 0.5) {
       setOnScreen(true)
     } else {
       setOnScreen(false)
@@ -76,6 +76,7 @@ function Image(props: Props) {
       onLoad={() => setImageLoaded(true)}
       src={url}
       width={width}
+      sizes={`(orientation: landscape) calc(80vh * ${aspectRatio}), 100vw`}
     />
   )
 
