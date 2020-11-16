@@ -13,13 +13,6 @@ export default function GlobalStyles() {
           --background: var(--lightGray);
         }
 
-        @media (prefers-color-scheme: dark) {
-          :root {
-            --foreground: var(--lightGray);
-            --background: var(--darkGray);
-          }
-        }
-
         * {
           padding: 0;
           margin: 0;
@@ -37,6 +30,13 @@ export default function GlobalStyles() {
           overflow: hidden;
           transition: 0.3s ease;
           transition-property: color, background-color;
+        }
+
+        @media (prefers-color-scheme: dark) {
+          html {
+            background-color: var(--foreground);
+            color: var(--background);
+          }
         }
 
         body {
