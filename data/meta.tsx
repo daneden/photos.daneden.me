@@ -22,8 +22,7 @@ const siteInfo = {
       </p>
     </React.Fragment>
   ),
-  image:
-    "https://dephotos.imgix.net/00013.jpg?auto=format&dpr=2&fm=pjpg&crop=faces&fit=max&w=1&h=900",
+  image: "https://photos.daneden.me/images/00013.jpg",
 }
 
 export default siteInfo
