@@ -4679,10 +4679,10 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-swr@^0.3.11:
-  version "0.3.11"
-  resolved "https://registry.yarnpkg.com/swr/-/swr-0.3.11.tgz#f7f50ed26c06afea4249482cec504768a2272664"
-  integrity sha512-ya30LuRGK2R7eDlttnb7tU5EmJYJ+N6ytIOM2j0Hqs0qauJcDjVLDOGy7KmFeH5ivOwLHalFaIyYl2K+SGa7HQ==
+swr@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/swr/-/swr-0.5.0.tgz#08648a752230a034cab7bb307c0b89af6f0efbba"
+  integrity sha512-zybQScVRZcEfZ6wXJJXvHrbooLs/XepV5Zoaz7o6esheDiQotEd0y56AwNJ2QBiPo2G/AbdhIC2Dm0csYpJrJQ==
   dependencies:
     dequal "2.0.2"
 
