@@ -29,7 +29,7 @@
     "node-vibrant": "^3.2.1-alpha.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "swr": "^0.5.5"
+    "swr": "^0.5.6"
   },
   "scripts": {
     "prestart": "node ./scripts/exif.js",
