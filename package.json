@@ -4,7 +4,7 @@
   "private": true,
   "devDependencies": {
     "@types/node": "^15.6.1",
-    "@types/react": "^17.0.6",
+    "@types/react": "^17.0.8",
     "@types/react-dom": "^17.0.5",
     "husky": "6.0.0",
     "lint-staged": "11.0.0",
