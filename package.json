@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "@types/node": "^15.6.1",
+    "@types/node": "^15.9.0",
     "@types/react": "^17.0.9",
     "@types/react-dom": "^17.0.6",
     "husky": "6.0.0",
