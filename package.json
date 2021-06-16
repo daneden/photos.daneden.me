@@ -6,6 +6,8 @@
     "@types/node": "^15.12.2",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.7",
+    "eslint": "^7.28.0",
+    "eslint-config-next": "^11.0.0",
     "husky": "6.0.0",
     "lint-staged": "11.0.0",
     "prettier": "2.3.1",
@@ -24,7 +26,7 @@
   "dependencies": {
     "dist-exiftool": "10.53.0",
     "isomorphic-unfetch": "^3.1.0",
-    "next": "^10.2.3",
+    "next": "^11.0.0",
     "node-exiftool": "2.3.0",
     "node-vibrant": "^3.2.1-alpha.1",
     "react": "^17.0.2",
@@ -37,9 +39,6 @@
     "dev": "next",
     "build": "next build",
     "start": "next start"
-  },
-  "eslintConfig": {
-    "extends": "./node_modules/react-scripts/config/eslint.js"
   },
   "browserslist": {
     "production": [

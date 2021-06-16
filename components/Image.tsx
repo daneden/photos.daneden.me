@@ -1,5 +1,4 @@
 import * as React from "react"
-import { ReactElement } from "react"
 import NextImage from "next/image"
 import useIntersect from "../hooks/useIntersection"
 
@@ -63,7 +62,7 @@ function Image(props: Props) {
         colors.lightVibrant ?? "var(--lightGray)"
       )
     }
-  }, [entry, onScreen])
+  }, [colors.darkVibrant, colors.lightVibrant, entry, onScreen])
 
   const url = `/images/${name}`
 
