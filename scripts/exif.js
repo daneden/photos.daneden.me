@@ -30,6 +30,7 @@ async function createManifestFromExifData(exifData) {
           vibrant: palette.Vibrant.hex,
           darkVibrant: palette.DarkVibrant.hex,
           lightVibrant: palette.LightVibrant.hex,
+          muted: palette.Muted.hex,
         }
       })
       .catch((e) => console.error(e))

@@ -3,6 +3,7 @@ import { ReactElement, ReactNode } from "react"
 import GlobalStyles from "./GlobalStyles"
 import Header from "./Header"
 import Image from "./Image"
+import altDescriptions from "../data/altDescriptions.json"
 
 export type ImageData = {
   aspectRatio: number
@@ -19,6 +20,7 @@ export type ImageData = {
     vibrant: string
     darkVibrant: string
     lightVibrant: string
+    muted: string
   }
 }
 
@@ -73,7 +75,7 @@ function App(props: Props): ReactElement {
             iso={img.iso}
             name={img.fileName}
             speed={img.shutterSpeed}
-            description={img.description}
+            alt={altDescriptions[img.fileName]}
             colors={img.colors}
             width={img.width}
             height={img.height}

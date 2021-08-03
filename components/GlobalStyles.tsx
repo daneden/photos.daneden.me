@@ -59,15 +59,15 @@ export default function GlobalStyles() {
 
         a {
           color: inherit;
-          text-decoration-color: rgba(255, 255, 255, 0.5);
-          text-decoration-skip-ink: auto;
+          text-decoration-thickness: 2px;
+          text-decoration-color: var(--highlight);
           transition: 0.2s ease;
           transition-property: color, text-decoration-color;
         }
 
         a:hover,
         a:focus {
-          text-decoration-color: currentColor;
+          color: var(--highlight);
         }
 
         p {

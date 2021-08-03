@@ -7,7 +7,7 @@ const { useEffect, useState } = React
 type Props = {
   aspectRatio: number
   camera: string
-  description: string
+  alt: string
   focalLength: string
   fStop: number
   iso: number
@@ -17,6 +17,7 @@ type Props = {
     vibrant: string
     darkVibrant: string
     lightVibrant: string
+    muted: string
   }
   width: number
   height: number
@@ -35,7 +36,7 @@ function Image(props: Props) {
   const {
     aspectRatio,
     camera,
-    description,
+    alt: description,
     fStop,
     focalLength,
     iso,
@@ -61,8 +62,12 @@ function Image(props: Props) {
         "--background",
         colors.lightVibrant ?? "var(--lightGray)"
       )
+      document.documentElement.style.setProperty(
+        "--highlight",
+        colors.muted ?? "var(--foreground)"
+      )
     }
-  }, [colors.darkVibrant, colors.lightVibrant, entry, onScreen])
+  }, [colors.darkVibrant, colors.lightVibrant, colors.muted, entry, onScreen])
 
   const url = `/images/${name}`
 
