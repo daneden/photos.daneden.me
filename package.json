@@ -26,7 +26,7 @@
   "dependencies": {
     "dist-exiftool": "10.53.0",
     "isomorphic-unfetch": "^3.1.0",
-    "next": "^11.0.1",
+    "next": "^11.1.0",
     "node-exiftool": "2.3.0",
     "node-vibrant": "^3.2.1-alpha.1",
     "react": "^17.0.2",
