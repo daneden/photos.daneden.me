@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "@types/node": "^16.6.1",
+    "@types/node": "^16.6.2",
     "@types/react": "^17.0.18",
     "@types/react-dom": "^17.0.9",
     "eslint": "^7.32.0",
