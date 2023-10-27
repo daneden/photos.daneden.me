@@ -1,10 +1,9 @@
-import * as React from "react"
 import NextImage from "next/image"
-import useIntersect from "../hooks/useIntersection"
+import * as React from "react"
 
 const { useEffect, useState } = React
 
-type Props = {
+export type Props = {
   aspectRatio: number
   camera: string
   alt: string
@@ -13,25 +12,12 @@ type Props = {
   iso: number
   name: string
   speed: string
-  colors: {
-    vibrant: string
-    darkVibrant: string
-    lightVibrant: string
-    muted: string
-  }
   width: number
   height: number
 }
 
-const thresholdArray = Array.from(Array(10).keys(), (i) => i / 10)
-
 function Image(props: Props) {
   const [imageLoaded, setImageLoaded] = useState(false)
-  const [onScreen, setOnScreen] = useState(false)
-  const [ref, entry] = useIntersect({
-    rootMargin: "-5%",
-    threshold: thresholdArray,
-  })
 
   const {
     aspectRatio,
@@ -43,31 +29,7 @@ function Image(props: Props) {
     name,
     width,
     height,
-    colors,
   } = props
-
-  useEffect(() => {
-    if (entry?.intersectionRatio > 0.5) {
-      setOnScreen(true)
-    } else {
-      setOnScreen(false)
-    }
-
-    if (entry?.intersectionRatio >= 0.9 && onScreen) {
-      document.documentElement.style.setProperty(
-        "--foreground",
-        colors.darkVibrant ?? "var(--darkGray)"
-      )
-      document.documentElement.style.setProperty(
-        "--background",
-        colors.lightVibrant ?? "var(--lightGray)"
-      )
-      document.documentElement.style.setProperty(
-        "--highlight",
-        colors.muted ?? "var(--foreground)"
-      )
-    }
-  }, [colors.darkVibrant, colors.lightVibrant, colors.muted, entry, onScreen])
 
   const url = `/images/${name}`
 
@@ -76,11 +38,9 @@ function Image(props: Props) {
       alt={description}
       className={`image ${imageLoaded ? "loaded" : "not-loaded"}`}
       height={height}
-      layout="responsive"
       onLoad={() => setImageLoaded(true)}
       src={url}
       width={width}
-      sizes={`(orientation: landscape) calc(80vh * ${aspectRatio}), 100vw`}
     />
   )
 
@@ -94,20 +54,13 @@ function Image(props: Props) {
 
   return (
     <>
-      <div ref={ref} className="pane">
+      <div className="pane">
         <div className="image-container">{image}</div>
         <p>
           {camera}, {`\u0192${fStop}, `}
           {speed} sec, {focalLength}, <span className="caps">ISO</span> {iso}
         </p>
       </div>
-      <style jsx>{`
-        .image-container {
-          opacity: ${onScreen ? 1 : 0.4};
-          transition: 0.3s ease;
-          transition-property: opacity;
-        }
-      `}</style>
       <style jsx>{`
         .pane {
           --aspect-ratio: ${aspectRatio};
@@ -132,6 +85,7 @@ function Image(props: Props) {
           opacity: 1;
           background-color: rgba(0, 0, 0, 0.15);
           height: var(--imgSize);
+          max-width: 100%;
         }
 
         @media (orientation: portrait) {

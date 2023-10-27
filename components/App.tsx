@@ -1,32 +1,12 @@
-import * as React from "react"
 import { ReactElement, ReactNode } from "react"
+import altDescriptions from "../data/altDescriptions.json"
 import GlobalStyles from "./GlobalStyles"
 import Header from "./Header"
-import Image from "./Image"
-import altDescriptions from "../data/altDescriptions.json"
-
-export type ImageData = {
-  aspectRatio: number
-  camera: string
-  description: string
-  fileName: string
-  focalLength: string
-  fStop: number
-  iso: number
-  shutterSpeed: string
-  width: number
-  height: number
-  colors: {
-    vibrant: string
-    darkVibrant: string
-    lightVibrant: string
-    muted: string
-  }
-}
+import Image, { Props as ImageProps } from "./Image"
 
 type Props = {
   preface?: ReactElement
-  images: Array<ImageData>
+  images: Array<ImageProps>
 }
 
 function Preface({ children }: { children: ReactNode }): ReactElement {
@@ -73,10 +53,9 @@ function App(props: Props): ReactElement {
             fStop={img.fStop}
             focalLength={img.focalLength}
             iso={img.iso}
-            name={img.fileName}
-            speed={img.shutterSpeed}
-            alt={altDescriptions[img.fileName]}
-            colors={img.colors}
+            name={img.name}
+            speed={img.speed}
+            alt={altDescriptions[img.name]}
             width={img.width}
             height={img.height}
           />

@@ -1,5 +1,3 @@
-import React from "react"
-
 export default function GlobalStyles() {
   return (
     <style jsx global>
@@ -8,7 +6,7 @@ export default function GlobalStyles() {
           --imgSize: 85vh;
           --baseline: 1.5rem;
           --darkGray: #222;
-          --lightGray: #aaa;
+          --lightGray: #fefefe;
           --foreground: var(--darkGray);
           --background: var(--lightGray);
         }
@@ -24,8 +22,7 @@ export default function GlobalStyles() {
           -webkit-text-size-adjust: none;
           background-color: var(--background);
           color: var(--foreground);
-          font: 90%/1.5 system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-          font-weight: 500;
+          font: 80%/1.5 system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
           height: 100%;
           overflow: hidden;
           transition: 0.3s ease;
@@ -59,7 +56,6 @@ export default function GlobalStyles() {
 
         a {
           color: inherit;
-          text-decoration-thickness: 2px;
           text-decoration-color: var(--highlight);
           transition: 0.2s ease;
           transition-property: color, text-decoration-color;
@@ -127,7 +123,7 @@ export default function GlobalStyles() {
 
         .pane--text {
           align-self: flex-start;
-          width: 35rem;
+          width: 28rem;
           max-width: 100%;
         }
 
